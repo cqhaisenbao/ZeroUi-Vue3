@@ -1,5 +1,5 @@
 <template>
-    <button :class="{checked:value}" @click="toggle">
+    <button :disabled="disabled" :class="{checked:value}" @click="toggle">
         <span></span>
     </button>
 </template>
@@ -10,7 +10,8 @@ import {defineComponent, ref} from 'vue';
 export default defineComponent({
     name: "Switch",
     props: {
-        value: Boolean
+        value: Boolean,
+        disabled: Boolean
     },
     setup(props, context) {
         const toggle = () => {
@@ -33,6 +34,10 @@ button {
     border-radius: $h/2;
     position: relative;
     background: $o-light-color;
+
+    &:disabled{
+        cursor:not-allowed ;
+    }
 
     &.checked {
         background: $o-type-primary;
