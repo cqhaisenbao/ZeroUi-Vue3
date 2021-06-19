@@ -38,6 +38,10 @@ button {
         }
     }
 
+    &:focus {
+        outline: none;
+    }
+
 }
 
 span {
@@ -48,5 +52,6 @@ span {
     width: $h2;
     background: white;
     border-radius: $h2 / 2;
+    transition: left .25s;
 }
 </style>
