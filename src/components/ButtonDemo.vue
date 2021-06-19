@@ -28,20 +28,24 @@
     <div>
         <Button loading>加载中</Button>
     </div>
+    <h1>示例6</h1>
+    <ButtonGroup :buttonGroupText="buttonGroupText"/>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 import Button from "../lib/Button.vue";
+import ButtonGroup from "../lib/ButtonGroup.vue";
 
 export default defineComponent({
     name: "ButtonDemo",
-    components: {Button},
+    components: {Button, ButtonGroup},
     setup() {
+        const buttonGroupText = ref(['武汉', '重庆', '北京']);
         const onClick = () => {
             console.log(123);
         };
-        return {onClick};
+        return {onClick, buttonGroupText};
     }
 });
 </script>
