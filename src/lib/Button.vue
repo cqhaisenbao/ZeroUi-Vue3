@@ -1,5 +1,5 @@
 <template>
-    <button class="zero-button" :class="`theme-${theme}`">
+    <button class="zero-button" :class="`zero-theme-${theme}`">
         <slot/>
     </button>
 </template>
@@ -57,6 +57,26 @@ $radius: 4px;
 
     &::-moz-focus-inner {
         border: 0;
+    }
+
+    &.zero-theme-link {
+        border-color: transparent;
+        box-shadow: none;
+        color: $o-type-primary;
+
+        &:hover, &:focus {
+            color: lighten($o-type-primary, 10%);
+        }
+    }
+
+    &.zero-theme-text {
+        border-color: transparent;
+        box-shadow: none;
+        color: inherit;
+
+        &:hover, &:focus {
+            background: darken(white, 5%);;
+        }
     }
 }
 </style>
