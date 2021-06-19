@@ -1,5 +1,5 @@
 <template>
-    <button :disabled="disabled" :class="{checked:value}" @click="toggle">
+    <button class="zero-switch" :disabled="disabled" :class="{'zero-checked':value}" @click="toggle">
         <span></span>
     </button>
 </template>
@@ -22,12 +22,12 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/style/theme.scss";
 
 $h: 22px;
 $h2: $h - 4px;
-button {
+.zero-switch {
     height: $h;
     width: $h*2;
     border: none;
@@ -35,11 +35,11 @@ button {
     position: relative;
     background: $o-light-color;
 
-    &:disabled{
-        cursor:not-allowed ;
+    &:disabled {
+        cursor: not-allowed;
     }
 
-    &.checked {
+    &.zero-checked {
         background: $o-type-primary;
 
         &:active {

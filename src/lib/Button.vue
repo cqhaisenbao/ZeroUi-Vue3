@@ -21,7 +21,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./src/style/theme.scss";
 
 $h: 32px;
