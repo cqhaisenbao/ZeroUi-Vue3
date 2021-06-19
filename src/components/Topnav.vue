@@ -22,6 +22,7 @@ export default {
     }
 };
 </script>
+
 <style lang="scss" scoped>
 .topnav {
     background: pink;
@@ -47,8 +48,15 @@ export default {
         }
     }
 
-    > .toggleAside{
-
+    > .toggleAside {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: red;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     @media (max-width: 500px) {
