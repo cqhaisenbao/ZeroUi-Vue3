@@ -6,6 +6,7 @@ import DocDemo from "../components/DocDemo.vue";
 import ButtonDemo from "../components/ButtonDemo.vue";
 import DialogDemo from "../components/DialogDemo.vue";
 import TabsDemo from "../components/TabsDemo.vue";
+import CardDemo from "../components/CardDemo.vue";
 
 const history = createWebHistory();
 const router = createRouter({
@@ -20,6 +21,7 @@ const router = createRouter({
                 {path: "button", component: ButtonDemo},
                 {path: "dialog", component: DialogDemo},
                 {path: "tabs", component: TabsDemo},
+                {path: "card", component: CardDemo}
             ]
         }
     ]
