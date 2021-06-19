@@ -1,22 +1,33 @@
 <template>
-    <button class="zero-button" :class="`zero-theme-${theme}`">
+    <button class="zero-button" :class="classes">
         <slot/>
     </button>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {computed, defineComponent, PropType} from 'vue';
 
 export default defineComponent({
     name: "Button",
     props: {
         theme: {
-            type: String,
+            type: String as PropType<ButtonTheme>,
             default: 'button'
+        },
+        size: {
+            type: String as PropType<ButtonSize>,
+            default: 'normal'
         }
     },
-    setup() {
-        return {};
+    setup(props) {
+        const {theme, size} = props;
+        const classes = computed(() => {
+            return {
+                [`zero-theme-${theme}`]: theme,
+                [`zero-size-${size}`]: size,
+            };
+        });
+        return {classes};
     }
 });
 </script>
@@ -77,6 +88,18 @@ $radius: 4px;
         &:hover, &:focus {
             background: darken(white, 5%);;
         }
+    }
+
+    &.zero-size-big {
+        font-size: 18px;
+        height: 40px;
+        padding: 0 16px;
+    }
+
+    &.zero-size-small {
+        font-size: 12px;
+        height: 22px;
+        padding: 4px 8px;
     }
 }
 </style>
