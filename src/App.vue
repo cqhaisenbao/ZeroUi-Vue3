@@ -1,5 +1,6 @@
 <template>
     <div>hi</div>
+    <router-view/>
 </template>
 
 <script>
