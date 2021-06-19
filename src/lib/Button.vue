@@ -1,5 +1,5 @@
 <template>
-    <button>
+    <button class="zero-button" :class="`theme-${theme}`">
         <slot/>
     </button>
 </template>
@@ -9,6 +9,12 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
     name: "Button",
+    props: {
+        theme: {
+            type: String,
+            default: 'button'
+        }
+    },
     setup() {
         return {};
     }
