@@ -1,5 +1,5 @@
 <template>
-    <button class="zero-button" :class="classes">
+    <button :disabled="disabled" class="zero-button" :class="classes">
         <slot/>
     </button>
 </template>
@@ -20,7 +20,11 @@ export default defineComponent({
         },
         level: {
             type: String as PropType<ButtonLevel>,
-            default: 'normal'
+            default: 'main'
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props) {
@@ -134,6 +138,15 @@ $radius: 4px;
                 border-color: darken($o-type-error, 10%);
             }
         }
+
+        &[disabled] {
+            cursor: not-allowed;
+            color: $o-tips-color;
+
+            &:hover {
+                border-color: $o-tips-color;
+            }
+        }
     }
 
     &.zero-theme-link {
@@ -145,6 +158,11 @@ $radius: 4px;
                 color: darken($o-type-error, 10%);
             }
         }
+
+        &[disabled] {
+            cursor: not-allowed;
+            color: $o-tips-color;
+        }
     }
 
     &.zero-theme-text {
@@ -155,6 +173,11 @@ $radius: 4px;
             &:focus {
                 color: darken($o-type-primary, 10%);
             }
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            color: $o-tips-color;
         }
 
         &.zero-level-danger {
