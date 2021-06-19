@@ -37,6 +37,12 @@ button {
     &.checked {
         background: $o-type-primary;
 
+        &:active {
+            > span {
+                width: $h2 + 4px; margin-left: -4px;
+            }
+        }
+
         > span {
             left: calc(100% - #{$h2} - 2px);
         }
@@ -46,16 +52,17 @@ button {
         outline: none;
     }
 
+    span {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        height: $h2;
+        width: $h2;
+        background: $o-bg-color;
+        border-radius: $h2 / 2;
+        transition: all .25s;
+    }
+
 }
 
-span {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    height: $h2;
-    width: $h2;
-    background: $o-bg-color;
-    border-radius: $h2 / 2;
-    transition: left .25s;
-}
 </style>
