@@ -1,5 +1,6 @@
 <template>
     <button :disabled="disabled" class="zero-button" :class="classes">
+        <span v-if="loading" class="zero-loadingIndicator"></span>
         <slot/>
     </button>
 </template>
@@ -20,9 +21,13 @@ export default defineComponent({
         },
         level: {
             type: String as PropType<ButtonLevel>,
-            default: 'main'
+            default: 'normal'
         },
         disabled: {
+            type: Boolean,
+            default: false
+        },
+        loading: {
             type: Boolean,
             default: false
         }
@@ -103,8 +108,8 @@ $radius: 4px;
     }
 
     &.zero-size-big {
-        font-size: 24px;
-        height: 48px;
+        font-size: 18px;
+        height: 40px;
         padding: 0 16px;
     }
 
@@ -188,6 +193,23 @@ $radius: 4px;
                 color: darken($o-type-error, 10%);
             }
         }
+    }
+
+    .zero-loadingIndicator {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        margin-right: 4px;
+        border-radius: 8px;
+        border-color: $o-type-primary $o-type-primary $o-type-primary transparent;
+        border-style: solid;
+        border-width: 2px;
+        animation: zero-spin 1s infinite linear;
+    }
+
+    @keyframes zero-spin {
+        0% {transform: rotate(0deg)}
+        100% {transform: rotate(360deg)}
     }
 }
 </style>
