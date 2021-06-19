@@ -1,18 +1,14 @@
 <template>
-    <div>Button示例</div>
-    <h1>示例1</h1>
-    <div>
-        <Button>你好</Button>
-    </div>
+    <button>
+        <slot/>
+    </button>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Button from "../lib/Button.vue";
 
 export default defineComponent({
-    name: "ButtonDemo",
-    components: {Button},
+    name: "Button",
     setup() {
         return {};
     }
