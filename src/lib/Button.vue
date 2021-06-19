@@ -1,5 +1,6 @@
 <template>
     <button :disabled="disabled" class="zero-button" :class="classes">
+        <span v-if="loading" class="zero-loadingIndicator"></span>
         <slot/>
     </button>
 </template>
@@ -20,20 +21,25 @@ export default defineComponent({
         },
         level: {
             type: String as PropType<ButtonLevel>,
-            default: 'main'
+            default: 'normal'
         },
         disabled: {
+            type: Boolean,
+            default: false
+        },
+        loading: {
             type: Boolean,
             default: false
         }
     },
     setup(props) {
-        const {theme, size, level} = props;
+        const {theme, size, level, loading} = props;
         const classes = computed(() => {
             return {
                 [`zero-theme-${theme}`]: theme,
                 [`zero-size-${size}`]: size,
-                [`zero-level-${level}`]: level
+                [`zero-level-${level}`]: level,
+                [`zero-loading-${loading}`]: loading
             };
         });
         return {classes};
@@ -61,6 +67,7 @@ $radius: 4px;
     border-radius: $radius;
     box-shadow: 0 1px 0 fade-out(black, 0.95);
     transition: background 250ms;
+    font-size: 14px;
 
     & + & {
         margin-left: 8px;
@@ -103,15 +110,15 @@ $radius: 4px;
     }
 
     &.zero-size-big {
-        font-size: 24px;
-        height: 48px;
+        font-size: 16px;
+        height: 40px;
         padding: 0 16px;
     }
 
     &.zero-size-small {
         font-size: 12px;
-        height: 20px;
-        padding: 0 4px;
+        height: 22px;
+        padding: 0 8px;
     }
 
     &.zero-theme-button {
@@ -188,6 +195,28 @@ $radius: 4px;
                 color: darken($o-type-error, 10%);
             }
         }
+    }
+
+    &.zero-loading-true {
+        color: $o-tips-color;
+        cursor: default;
+    }
+
+    .zero-loadingIndicator {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        margin-right: 4px;
+        border-radius: 8px;
+        border-color: $o-type-primary $o-type-primary $o-type-primary transparent;
+        border-style: solid;
+        border-width: 2px;
+        animation: zero-spin 1s infinite linear;
+    }
+
+    @keyframes zero-spin {
+        0% {transform: rotate(0deg)}
+        100% {transform: rotate(360deg)}
     }
 }
 </style>
