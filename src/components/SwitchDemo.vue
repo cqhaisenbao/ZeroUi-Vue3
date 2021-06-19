@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Switch v-model:value="y"/>
+        <Switch v-model:value="isChecked"/>
     </div>
 </template>
 
@@ -12,8 +12,8 @@ export default defineComponent({
     name: "SwitchDemo",
     components: {Switch},
     setup() {
-        const y = ref(true);
-        return {y};
+        const isChecked = ref(true);
+        return {isChecked};
     }
 });
 </script>

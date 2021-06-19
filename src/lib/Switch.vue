@@ -22,6 +22,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import "./src/style/theme.scss";
+
 $h: 22px;
 $h2: $h - 4px;
 button {
@@ -30,10 +32,10 @@ button {
     border: none;
     border-radius: $h/2;
     position: relative;
-    background: #777777;
+    background: $o-light-color;
 
     &.checked {
-        background: cadetblue;
+        background: $o-type-primary;
 
         > span {
             left: calc(100% - #{$h2} - 2px);
@@ -52,7 +54,7 @@ span {
     left: 2px;
     height: $h2;
     width: $h2;
-    background: white;
+    background: $o-bg-color;
     border-radius: $h2 / 2;
     transition: left .25s;
 }
