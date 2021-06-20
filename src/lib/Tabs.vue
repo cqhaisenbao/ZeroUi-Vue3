@@ -2,6 +2,7 @@
     <div class="zero-tabs">
         <div class="zero-tabs-nav">
             <div :class="{selected : t.name === selected}" @click="select(t.name)" class="zero-tabs-nav-item" v-for="t in titlesAngNames" :key="t.name">{{ t.title }}</div>
+            <div class="zero-tabs-nav-indicator"></div>
         </div>
         <div class="zero-tabs-content">
             <component class="zero-tabs-content-item" :is="current" :key="selected"/>
@@ -32,7 +33,7 @@ export default defineComponent({
             };
         });
         const current = computed(() => {
-            return defaults.filter(tag => tag.props.name === props.selected)[0];
+            return defaults.find(tag => tag.props.name === props.selected);
         });
         const select = (name: string) => {
             context.emit('update:selected', name);
@@ -50,6 +51,7 @@ export default defineComponent({
         display: flex;
         color: $o-main-color;
         border-bottom: 1px solid $o-border-color;
+        position: relative;
 
         &-item {
             padding: 8px 0;
@@ -63,6 +65,15 @@ export default defineComponent({
             &.selected {
                 color: $o-type-primary;
             }
+        }
+
+        &-indicator {
+            position: absolute;
+            height: 3px;
+            background: $o-type-primary;
+            left: 0;
+            bottom: -1px;
+            width: 100px;
         }
     }
 
