@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onMounted, onUpdated, ref, watch} from 'vue';
+import {computed, defineComponent, onMounted, ref, watchEffect} from 'vue';
 import Tab from "./Tab.vue";
 
 export default defineComponent({
@@ -28,16 +28,16 @@ export default defineComponent({
         const indicator = ref<HTMLDivElement>(null);
         const selectedItem = ref<HTMLDivElement>(null);
         const container = ref<HTMLDivElement[]>([]);
-        const x = () => {
-            const {width} = selectedItem.value.getBoundingClientRect();
-            indicator.value.style.width = width + 'px';
-            const {left: left1} = container.value.getBoundingClientRect();
-            const {left: left2} = selectedItem.value.getBoundingClientRect();
-            const left = left2 - left1;
-            indicator.value.style.left = left + 'px';
-        };
-        onMounted(x);
-        onUpdated(x);
+        onMounted(() => {
+            watchEffect(() => {
+                const {width} = selectedItem.value.getBoundingClientRect();
+                indicator.value.style.width = width + 'px';
+                const {left: left1} = container.value.getBoundingClientRect();
+                const {left: left2} = selectedItem.value.getBoundingClientRect();
+                const left = left2 - left1;
+                indicator.value.style.left = left + 'px';
+            });
+        });
         defaults.forEach(tag => {
             if (tag.type !== Tab) {
                 throw new Error('Tabs子标签必须是Tab');

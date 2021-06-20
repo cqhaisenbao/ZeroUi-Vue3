@@ -18,7 +18,7 @@ export default defineComponent({
     name: "TabsDemo",
     components: {Tabs, Tab},
     setup() {
-        const currentTab=ref('second')
+        const currentTab = ref('first');
         return {currentTab};
     }
 });
