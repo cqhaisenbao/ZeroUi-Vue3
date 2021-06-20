@@ -3,7 +3,7 @@
         <div class="zero-tabs-nav" ref="container">
             <div :class="{selected : t.name === selected}" @click="select(t.name)"
                  class="zero-tabs-nav-item" v-for="(t,index) in titlesAngNames" :key="t.name"
-                 :ref="el=>{if(el) navItems[index]=el}"
+                 :ref="el=>{if(t.name===selected) selectedItem=el}"
             >{{ t.title }}
             </div>
             <div class="zero-tabs-nav-indicator" ref="indicator"></div>
@@ -26,15 +26,13 @@ export default defineComponent({
     setup(props, context) {
         const defaults = context.slots.default();
         const indicator = ref<HTMLDivElement>(null);
-        const navItems = ref<HTMLDivElement[]>([]);
+        const selectedItem = ref<HTMLDivElement>(null);
         const container = ref<HTMLDivElement[]>([]);
         const x = () => {
-            const divs = navItems.value;
-            const result = divs.find(div => div.classList.contains('selected'));
-            const {width} = result.getBoundingClientRect();
+            const {width} = selectedItem.value.getBoundingClientRect();
             indicator.value.style.width = width + 'px';
             const {left: left1} = container.value.getBoundingClientRect();
-            const {left: left2} = result.getBoundingClientRect();
+            const {left: left2} = selectedItem.value.getBoundingClientRect();
             const left = left2 - left1;
             indicator.value.style.left = left + 'px';
         };
@@ -57,7 +55,7 @@ export default defineComponent({
         const select = (name: string) => {
             context.emit('update:selected', name);
         };
-        return {defaults, titlesAngNames, current, select, navItems, indicator, container};
+        return {defaults, titlesAngNames, current, select, selectedItem, indicator, container};
     }
 });
 </script>
