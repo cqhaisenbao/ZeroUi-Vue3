@@ -1,6 +1,5 @@
 <template>
     <button :disabled="disabled" class="zero-button" :class="classes">
-        <span v-if="loading" class="zero-loadingIndicator"></span>
         <slot/>
     </button>
 </template>
