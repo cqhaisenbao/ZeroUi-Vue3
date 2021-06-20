@@ -1,26 +1,28 @@
 <template>
-    <div v-if="visible">
-        <div class="zero-dialog-overlay" @click="onClickOverlay"></div>
-        <div class="zero-dialog-wrapper">
-            <div class="zero-dialog">
-                <header>
-                    <slot name="title">
-                        <p>{{ title }}</p>
-                    </slot>
-                    <span class="zero-dialog-close" @click="close"></span>
-                </header>
-                <main>
-                    <slot></slot>
-                </main>
-                <footer>
-                    <slot name="footer">
-                        <Button @click="ok" :loading="isLoading" level="main">ok</Button>
-                        <Button @click="cancel">cancel</Button>
-                    </slot>
-                </footer>
+    <Teleport to="body">
+        <div v-if="visible">
+            <div class="zero-dialog-overlay" @click="onClickOverlay"></div>
+            <div class="zero-dialog-wrapper">
+                <div class="zero-dialog">
+                    <header>
+                        <slot name="title">
+                            <p>{{ title }}</p>
+                        </slot>
+                        <span class="zero-dialog-close" @click="close"></span>
+                    </header>
+                    <main>
+                        <slot></slot>
+                    </main>
+                    <footer>
+                        <slot name="footer">
+                            <Button @click="ok" :loading="isLoading" level="main">ok</Button>
+                            <Button @click="cancel">cancel</Button>
+                        </slot>
+                    </footer>
+                </div>
             </div>
         </div>
-    </div>
+    </Teleport>
 </template>
 
 <script lang="ts">
