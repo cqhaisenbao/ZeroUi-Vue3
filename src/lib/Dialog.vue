@@ -1,19 +1,19 @@
 <template>
-    <div>
-        <div class="zero-dialog-overlay"></div>
+    <div v-if="visible">
+        <div class="zero-dialog-overlay" @click="onClickOverlay"></div>
         <div class="zero-dialog-wrapper">
             <div class="zero-dialog">
                 <header>
-                    标题
-                    <span class="zero-dialog-close"></span>
+                    <p>{{ title }}</p>
+                    <span class="zero-dialog-close" @click="close"></span>
                 </header>
                 <main>
                     <p>one</p>
                     <p>two</p>
                 </main>
                 <footer>
-                    <Button level="main">ok</Button>
-                    <Button>cancel</Button>
+                    <Button @click="ok" :loading="isLoading" level="main">ok</Button>
+                    <Button @click="cancel">cancel</Button>
                 </footer>
             </div>
         </div>
@@ -21,14 +21,53 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 import Button from "./Button.vue";
 
 export default defineComponent({
     name: "Dialog",
     components: {Button},
-    setup() {
-        return {};
+    props: {
+        title: String,
+        visible: {
+            type: Boolean,
+            default: false
+        },
+        closeOnClickOverlay: {
+            type: Boolean,
+            default: true
+        },
+        ok: Function,
+        cancel: Function
+    },
+    setup(props, context) {
+        const close = () => {
+            context.emit('update:visible', false);
+        };
+        const isLoading = ref(false);
+        const onClickOverlay = () => {
+            if (props.closeOnClickOverlay) {
+                close();
+            }
+        };
+        const ok = () => {
+            if (props.ok) {
+                isLoading.value = true;
+                props.ok().then((res) => {
+                    if (res) {
+                        close();
+                        isLoading.value = false;
+                    }
+                });
+            } else {
+                close();
+            }
+        };
+        const cancel = () => {
+            context.emit('cancel');
+            close()
+        };
+        return {close, onClickOverlay, ok, cancel, isLoading};
     }
 });
 </script>
@@ -79,7 +118,9 @@ $radius: 4px;
     > footer {
         border-top: 1px solid $o-border-color;
         padding: 12px 16px;
-        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
 
     &-close {
