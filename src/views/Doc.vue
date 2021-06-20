@@ -6,13 +6,13 @@
                 <h3>文档</h3>
                 <ol>
                     <li>
-                        <router-link to="/">介绍</router-link>
+                        <router-link to="/doc/intro">介绍</router-link>
                     </li>
                     <li>
-                        <router-link to="/">安装</router-link>
+                        <router-link to="/doc/get-started">安装</router-link>
                     </li>
                     <li>
-                        <router-link to="/">开始使用</router-link>
+                        <router-link to="/doc/install">开始使用</router-link>
                     </li>
                 </ol>
                 <h3>组件列表</h3>
@@ -55,6 +55,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./src/style/theme.scss";
+
 $aside-index: 0;
 .doc-layout ::v-deep(.topnav) {
     box-shadow: 0 2px 8px #f0f1f2;
@@ -84,6 +86,14 @@ $aside-index: 0;
 
     > aside {
         width: 260px;
+
+        > ol {
+            > li {
+                &:hover {
+                    background: $o-type-info-light;
+                }
+            }
+        }
     }
 
     > main {
