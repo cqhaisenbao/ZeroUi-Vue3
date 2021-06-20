@@ -4,16 +4,19 @@
         <div class="zero-dialog-wrapper">
             <div class="zero-dialog">
                 <header>
-                    <p>{{ title }}</p>
+                    <slot name="title">
+                        <p>{{ title }}</p>
+                    </slot>
                     <span class="zero-dialog-close" @click="close"></span>
                 </header>
                 <main>
-                    <p>one</p>
-                    <p>two</p>
+                    <slot></slot>
                 </main>
                 <footer>
-                    <Button @click="ok" :loading="isLoading" level="main">ok</Button>
-                    <Button @click="cancel">cancel</Button>
+                    <slot name="footer">
+                        <Button @click="ok" :loading="isLoading" level="main">ok</Button>
+                        <Button @click="cancel">cancel</Button>
+                    </slot>
                 </footer>
             </div>
         </div>
@@ -28,7 +31,10 @@ export default defineComponent({
     name: "Dialog",
     components: {Button},
     props: {
-        title: String,
+        title: {
+            type: String,
+            default: '请传入标题'
+        },
         visible: {
             type: Boolean,
             default: false
@@ -65,7 +71,7 @@ export default defineComponent({
         };
         const cancel = () => {
             context.emit('cancel');
-            close()
+            close();
         };
         return {close, onClickOverlay, ok, cancel, isLoading};
     }

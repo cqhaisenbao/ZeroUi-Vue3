@@ -3,7 +3,10 @@
         <div>Dialog示例</div>
         <h1>示例1</h1>
         <Button @click="dialogVisible=!dialogVisible">toggle</Button>
-        <Dialog title="我是标题" v-model:visible="dialogVisible" :closeOnClickOverlay="false" :ok="okCallback" :cancel="cancelCallback"></Dialog>
+        <Dialog title="我是标题" v-model:visible="dialogVisible" :closeOnClickOverlay="false" :ok="okCallback" :cancel="cancelCallback">
+            <p>第一行字</p>
+            <p>第二行字</p>
+        </Dialog>
     </div>
 </template>
 
