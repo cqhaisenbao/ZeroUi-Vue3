@@ -1,11 +1,19 @@
 <template>
-    <div class="topnav">
-        <div class="logo">LOGO</div>
-        <ul class="menu">
-            <li>菜单1</li>
-            <li>菜单2</li>
-        </ul>
-        <span class="toggleAside" @click="toggleMenu"></span>
+    <div class="home">
+        <div class="topnav">
+            <router-link to="/" class="logo">
+                <svg class="icon">
+                    <use xlink:href="#icon-easy"></use>
+                </svg>
+            </router-link>
+            <ul class="menu">
+                <router-link to="/doc/intro">文档</router-link>
+                <li><a href="https://github.com/cqhaisenbao/guoguo-ui">github</a></li>
+            </ul>
+            <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+                <use xlink:href="#icon-menu"></use>
+            </svg>
+        </div>
     </div>
 </template>
 
@@ -13,33 +21,49 @@
 import {inject, Ref} from 'vue';
 
 export default {
+    props: {
+        toggleMenuButtonVisible: {
+            type: Boolean,
+            default: false
+        }
+    },
     setup() {
-        const menuVisible = inject<Ref<boolean>>('menuVisible');
+        const menuVisible = inject<Ref<boolean>>('menuVisible') !;
         const toggleMenu = () => {
             menuVisible.value = !menuVisible.value;
         };
-        return {toggleMenu};
+        return {toggleMenu, menuVisible};
     }
 };
 </script>
 
 <style lang="scss" scoped>
+$color: #007974;
+.home .topnav {
+    background: 0 0;
+}
+
 .topnav {
-    height: 54px;
-    background: pink;
+    background: white;
     display: flex;
-    padding: 16px;
+    padding: 8px 50px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 20;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .25);
 
     > .logo {
         max-width: 6em;
         margin-right: auto;
+
+        > svg {
+            width: 40px;
+            height: 40px;
+        }
     }
 
     > .menu {
@@ -48,14 +72,13 @@ export default {
         flex-wrap: nowrap;
 
         > li {
-            margin: 0 1em;
+            margin: 0 2em;
         }
     }
 
     > .toggleAside {
-        width: 24px;
-        height: 24px;
-        background: red;
+        width: 32px;
+        height: 32px;
         position: absolute;
         left: 16px;
         top: 50%;

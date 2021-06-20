@@ -1,9 +1,21 @@
 <template>
-    <div class="layout">
-        <Topnav class="nav"/>
+    <div class="doc-layout">
+        <Topnav :toggleMenuButtonVisible="true" class="nav"/>
         <div class="content">
             <aside v-if="menuVisible">
-                <h2>组件列表</h2>
+                <h3>文档</h3>
+                <ol>
+                    <li>
+                        <router-link to="/">介绍</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">安装</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/">开始使用</router-link>
+                    </li>
+                </ol>
+                <h3>组件列表</h3>
                 <ol>
                     <li>
                         <router-link to="/doc/switch">Switch 组件</router-link>
@@ -43,21 +55,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./src/style/theme.scss";
+$aside-index: 0;
+.doc-layout ::v-deep(.topnav) {
+    box-shadow: 0 2px 8px #f0f1f2;
+}
 
-.layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-
+.doc-layout {
     > .nav {
-        flex-shrink: 0;
+        height: 60px;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+        background: #ffffff;
+        color: #333;
     }
 
     > .content {
-        flex-grow: 1;
         padding-top: 60px;
-        padding-left: 156px;
+        padding-left: 260px;
         @media (max-width: 500px) {
             padding-left: 0;
         }
@@ -68,7 +83,7 @@ export default {
     display: flex;
 
     > aside {
-        flex-shrink: 0;
+        width: 260px;
     }
 
     > main {
@@ -79,21 +94,37 @@ export default {
 }
 
 aside {
-    background: lightblue;
-    width: 150px;
+    width: 260px;
     position: fixed;
-    top: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 60px;
     left: 0;
-    padding: 70px 16px 16px;
-    height: 100%;
+    bottom: 0;
+    border-right: 1px solid #e8e8e8;
+    z-index: 10;
+    background: #fff;
 
-    > h2 {
+    > h3 {
         margin-bottom: 4px;
+        margin-top: 3px;
+        padding: 0 16px;
     }
 
     > ol {
         > li {
-            padding: 4px 0;
+            > a {
+                display: block;
+                padding: 10px 16px;
+                text-decoration: none;
+            }
+
+            .router-link-active {
+                border-left: 4px solid #3f51b5;
+                background: #323232;
+                color: white;
+                font-weight: 500;
+            }
         }
     }
 }
