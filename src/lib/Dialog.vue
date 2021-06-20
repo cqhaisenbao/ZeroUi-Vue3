@@ -11,7 +11,7 @@
                         <span class="zero-dialog-close" @click="close"></span>
                     </header>
                     <main>
-                        <slot></slot>
+                        <slot name="content"></slot>
                     </main>
                     <footer>
                         <slot name="footer">

@@ -4,9 +4,13 @@
         <h1>示例1</h1>
         <Button @click="dialogVisible=!dialogVisible">toggle</Button>
         <Dialog title="我是标题" v-model:visible="dialogVisible" :closeOnClickOverlay="false" :ok="okCallback" :cancel="cancelCallback">
-            <p>第一行字</p>
-            <p>第二行字</p>
+            <template #content>
+                <p>第一行字</p>
+                <p>第二行字</p>
+            </template>
         </Dialog>
+        <h1>示例2</h1>
+        <Button @click="showDialog">方法调用打开dialog</Button>
     </div>
 </template>
 
@@ -14,6 +18,7 @@
 import {defineComponent, ref} from 'vue';
 import Dialog from "../lib/Dialog.vue";
 import Button from "../lib/Button.vue";
+import {openDialog} from "../lib/openDialog";
 
 export default defineComponent({
     name: "DialogDemo",
@@ -28,7 +33,13 @@ export default defineComponent({
             });
         };
         const cancelCallback = () => {};
-        return {dialogVisible, okCallback, cancelCallback};
+        const showDialog = () => {
+            openDialog({
+                title: '标题',
+                content: '你好'
+            });
+        };
+        return {dialogVisible, okCallback, cancelCallback, showDialog};
     }
 });
 </script>
