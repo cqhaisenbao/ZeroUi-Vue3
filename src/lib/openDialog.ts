@@ -20,12 +20,16 @@ export const openDialog = (options: DialogOptions) => {
                     }
                 }
             }, {
-                title,
-                content: h('p', {
-                    style: {
-                        color: '#ff9900'
-                    }
-                }, content)
+                title() {
+                    return h('h2', title);
+                },
+                content() {
+                    return h('p', {
+                        style: {
+                            color: '#ff9900'
+                        }
+                    }, content);
+                }
             });
         }
     });
