@@ -1,8 +1,12 @@
 <template>
     <div class="zero-tabs">
-        <div class="zero-tabs-nav">
-            <div :class="{selected : t.name === selected}" @click="select(t.name)" class="zero-tabs-nav-item" v-for="t in titlesAngNames" :key="t.name">{{ t.title }}</div>
-            <div class="zero-tabs-nav-indicator"></div>
+        <div class="zero-tabs-nav" ref="container">
+            <div :class="{selected : t.name === selected}" @click="select(t.name)"
+                 class="zero-tabs-nav-item" v-for="(t,index) in titlesAngNames" :key="t.name"
+                 :ref="el=>{if(el) navItems[index]=el}"
+            >{{ t.title }}
+            </div>
+            <div class="zero-tabs-nav-indicator" ref="indicator"></div>
         </div>
         <div class="zero-tabs-content">
             <component class="zero-tabs-content-item" :is="current" :key="selected"/>
@@ -11,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
+import {computed, defineComponent, onMounted, onUpdated, ref, watch} from 'vue';
 import Tab from "./Tab.vue";
 
 export default defineComponent({
@@ -21,6 +25,21 @@ export default defineComponent({
     },
     setup(props, context) {
         const defaults = context.slots.default();
+        const indicator = ref<HTMLDivElement>(null);
+        const navItems = ref<HTMLDivElement[]>([]);
+        const container = ref<HTMLDivElement[]>([]);
+        const x = () => {
+            const divs = navItems.value;
+            const result = divs.find(div => div.classList.contains('selected'));
+            const {width} = result.getBoundingClientRect();
+            indicator.value.style.width = width + 'px';
+            const {left: left1} = container.value.getBoundingClientRect();
+            const {left: left2} = result.getBoundingClientRect();
+            const left = left2 - left1;
+            indicator.value.style.left = left + 'px';
+        };
+        onMounted(x);
+        onUpdated(x);
         defaults.forEach(tag => {
             if (tag.type !== Tab) {
                 throw new Error('Tabs子标签必须是Tab');
@@ -38,7 +57,7 @@ export default defineComponent({
         const select = (name: string) => {
             context.emit('update:selected', name);
         };
-        return {defaults, titlesAngNames, current, select};
+        return {defaults, titlesAngNames, current, select, navItems, indicator, container};
     }
 });
 </script>
@@ -74,6 +93,7 @@ export default defineComponent({
             left: 0;
             bottom: -1px;
             width: 100px;
+            transition: all .25s;
         }
     }
 

@@ -4,7 +4,7 @@
         <h1>示例1</h1>
         <Tabs v-model:selected="currentTab">
             <Tab title="导航1" name="first">内容1</Tab>
-            <Tab title="导航2" name="second">内容2</Tab>
+            <Tab title="导航222222" name="second">内容2</Tab>
         </Tabs>
     </div>
 </template>
@@ -18,7 +18,7 @@ export default defineComponent({
     name: "TabsDemo",
     components: {Tabs, Tab},
     setup() {
-        const currentTab=ref('first')
+        const currentTab=ref('second')
         return {currentTab};
     }
 });
