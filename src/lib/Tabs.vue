@@ -1,5 +1,8 @@
 <template>
-    <div></div>
+    <div>
+        <div v-for="(title,index) in titles" :key="index">{{ title }}</div>
+        <component v-for="(c,index) in defaults" :key="index" :is="c"/>
+    </div>
 </template>
 
 <script lang="ts">
@@ -15,7 +18,8 @@ export default defineComponent({
                 throw new Error('Tabs子标签必须是Tab');
             }
         });
-        return {};
+        const titles = defaults.map(tag => tag.props.title);
+        return {defaults, titles};
     }
 });
 </script>
