@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import Card from "../lib/Card.vue";
+import Card from "../../lib/Card.vue";
 
 export default defineComponent({
     name: "CardDemo",

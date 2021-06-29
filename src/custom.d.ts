@@ -11,5 +11,7 @@ type CardShadow = "always" | "hover" | "never"
 //dialog
 interface DialogOptions {
     title: string,
-    content: string
+    content: string,
+    ok: Function,
+    cancel: Function
 }

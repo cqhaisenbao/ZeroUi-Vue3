@@ -1,12 +1,11 @@
 import {createWebHistory, createRouter} from 'vue-router';
 import Home from '../views/Home.vue';
 import Doc from '../views/Doc.vue';
-import SwitchDemo from "../components/SwitchDemo.vue";
-import DocDemo from "../components/DocDemo.vue";
-import ButtonDemo from "../components/ButtonDemo.vue";
-import DialogDemo from "../components/DialogDemo.vue";
-import TabsDemo from "../components/TabsDemo.vue";
-import CardDemo from "../components/CardDemo.vue";
+import SwitchDemo from "../components/demo/SwitchDemo.vue";
+import ButtonDemo from "../components/demo/ButtonDemo.vue";
+import DialogDemo from "../components/demo/DialogDemo.vue";
+import TabsDemo from "../components/demo/TabsDemo.vue";
+import CardDemo from "../components/demo/CardDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -19,7 +18,6 @@ const router = createRouter({
         {
             path: '/doc', component: Doc,
             children: [
-                {path: "", component: DocDemo},
                 {path: "intro", component: Intro},
                 {path: "get-started", component: GetStarted},
                 {path: "install", component: Install},

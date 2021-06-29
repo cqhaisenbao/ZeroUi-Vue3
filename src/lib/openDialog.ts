@@ -2,7 +2,7 @@ import Dialog from "./Dialog.vue";
 import {createApp, h} from "vue";
 
 export const openDialog = (options: DialogOptions) => {
-    const {title, content} = options;
+    const {title, content, ok, cancel} = options;
     const div = document.createElement('div');
     document.body.appendChild(div);
     const close = () => {
@@ -13,7 +13,8 @@ export const openDialog = (options: DialogOptions) => {
         render() {
             return h(Dialog, {
                 visible: true,
-                cancel: () => {},
+                cancel,
+                ok,
                 'onUpdate:visible': (val: Boolean) => {
                     if (!val) {
                         close();
