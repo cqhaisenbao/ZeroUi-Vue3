@@ -7,7 +7,7 @@
                 <h2>一个面向学习者的 UI 框架</h2>
                 <p class="actions">
                     <a href="https://github.com/cqhaisenbao/guoguo-ui">GitHub</a>
-                    <router-link to="/doc">开始</router-link>
+                    <router-link to="/doc/intro">开始</router-link>
                 </p>
             </div>
         </div>
