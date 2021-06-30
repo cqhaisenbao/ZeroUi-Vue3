@@ -9,6 +9,7 @@ import Switch2Demo from './Switch2.demo.vue';
 import Tabs1Demo from './Tabs1.demo.vue';
 import Card1Demo from './Card1.demo.vue'
 import Card2Demo from './Card2.demo.vue'
+import Icon1Demo from './Icon1.demo.vue'
 
 export {
     Button1Demo,
@@ -21,5 +22,6 @@ export {
     Switch2Demo,
     Tabs1Demo,
     Card1Demo,
-    Card2Demo
+    Card2Demo,
+    Icon1Demo
 }

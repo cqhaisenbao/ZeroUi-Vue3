@@ -6,6 +6,7 @@ import ButtonDemo from "../components/demo/ButtonDemo.vue";
 import DialogDemo from "../components/demo/DialogDemo.vue";
 import TabsDemo from "../components/demo/TabsDemo.vue";
 import CardDemo from "../components/demo/CardDemo.vue";
+import IconDemo from "../components/demo/IconDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -26,7 +27,8 @@ const router = createRouter({
                 {path: "button", component: ButtonDemo},
                 {path: "dialog", component: DialogDemo},
                 {path: "tabs", component: TabsDemo},
-                {path: "card", component: CardDemo}
+                {path: "card", component: CardDemo},
+                {path: "icon", component: IconDemo}
             ]
         }
     ]
