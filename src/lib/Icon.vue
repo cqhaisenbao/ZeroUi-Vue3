@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <svg class="o-icon" :style="style" aria-hidden="true">
-            <use :xlink:href="'#'+name"></use>
-        </svg>
-    </div>
+    <svg class="o-icon" :style="style" aria-hidden="true">
+        <use :xlink:href="'#'+name"></use>
+    </svg>
 </template>
 
 <script lang="ts">
@@ -21,16 +19,16 @@ export default defineComponent({
         fill: {
             type: String,
         },
-        fontSize: {
-            type: Number,
-            default: 36
-        }
+        // fontSize: {
+        //     type: Number,
+        //     default: 36
+        // }
     },
     computed: {
         style() {
             return {
                 fill: this.fill,
-                'font-size': this.fontSize + 'px'
+                // 'font-size': this.fontSize + 'px'
             };
         }
     },
