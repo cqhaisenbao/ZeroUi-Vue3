@@ -1,6 +1,6 @@
 <template>
     <teleport to="body">
-        <div v-if="loading" class="o-loading-wrapper" style="'background-color':background">
+        <div v-if="loading" class="o-loading-wrapper" :style="{background:background}">
             <div class="sk-chase">
                 <div class="sk-chase-dot"></div>
                 <div class="sk-chase-dot"></div>
@@ -30,7 +30,8 @@ export default defineComponent({
             type: String
         },
         background: {
-            type: String
+            type: String,
+            default: 'hsla(0, 0%, 100%, .9)'
         }
     },
     setup() {
@@ -46,7 +47,6 @@ export default defineComponent({
     position: fixed;
     height: 100%;
     width: 100%;
-    background-color: hsla(0, 0%, 100%, .9);
     z-index: 9999;
     top: 0;
     left: 0;
