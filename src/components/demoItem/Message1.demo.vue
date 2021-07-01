@@ -18,7 +18,8 @@ export default {
                 message: '我是通过函数调用的message',
                 canClose: true,
                 type: 'error',
-                displayTime: 3
+                displayTime: 300,
+                top:30
             });
         };
         return {open};

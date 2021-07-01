@@ -28,5 +28,6 @@ interface MessageOptions {
     type?: string,
     canClose?: boolean,
     close?: () => void,
-    displayTime?: number
+    displayTime?: number,
+    top?: number
 }

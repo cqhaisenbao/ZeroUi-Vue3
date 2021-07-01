@@ -1,6 +1,6 @@
 <template>
     <teleport to="body">
-        <div v-if="messageVisible" class="o-messageWrapper" :class="'o-messageWrapper-'+type">
+        <div v-if="messageVisible" :style=`top:${top}%` class="o-messageWrapper" :class="'o-messageWrapper-'+type">
             <Icon :name="'icon-'+type"/>
             <span class="o-message">{{ message }}</span>
             <span v-if="canClose" class="close" @click="close">╳</span>
@@ -18,6 +18,9 @@ export default defineComponent({
     props: {
         close: {
             type: Function
+        },
+        top: {
+            type: Number
         },
         message: {
             type: String,

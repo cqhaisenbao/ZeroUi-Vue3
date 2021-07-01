@@ -2,7 +2,7 @@ import Message from "./Message.vue";
 import {createApp, h} from "vue";
 
 export const openMessage = (options: MessageOptions) => {
-    const {message, type, canClose, displayTime} = options;
+    const {message, type, canClose, displayTime, top = 20} = options;
     const div = document.createElement('div');
     document.body.appendChild(div);
     const close = () => {
@@ -16,6 +16,7 @@ export const openMessage = (options: MessageOptions) => {
                 type,
                 canClose,
                 close,
+                top
             });
         }
     });
