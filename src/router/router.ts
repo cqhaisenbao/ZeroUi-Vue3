@@ -9,6 +9,7 @@ import CardDemo from "../components/demo/CardDemo.vue";
 import IconDemo from "../components/demo/IconDemo.vue";
 import InputDemo from "../components/demo/InputDemo.vue";
 import LoadingDemo from "../components/demo/LoadingDemo.vue";
+import MessageDemo from "../components/demo/MessageDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -32,7 +33,8 @@ const router = createRouter({
                 {path: "card", component: CardDemo},
                 {path: "icon", component: IconDemo},
                 {path: "input", component: InputDemo},
-                {path: "loading", component: LoadingDemo}
+                {path: "loading", component: LoadingDemo},
+                {path: "message", component: MessageDemo}
             ]
         }
     ]
