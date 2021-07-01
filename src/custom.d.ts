@@ -17,7 +17,16 @@ interface DialogOptions {
 }
 
 //Loading
-interface LoadingOptions{
-    text:string,
-    background:string
+interface LoadingOptions {
+    text: string,
+    background?: string
+}
+
+//Message
+interface MessageOptions {
+    message: string,
+    type?: string,
+    canClose?: boolean,
+    close?: () => void,
+    displayTime?: number
 }

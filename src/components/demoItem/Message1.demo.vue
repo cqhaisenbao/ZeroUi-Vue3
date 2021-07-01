@@ -2,26 +2,26 @@
 组件调用方式11
 </demo>
 <template>
-    <Message message="这是一条普通提示信息" :canClose="true"/>
-    <Button @click="openLoading">打开Message</Button>
+    <Button @click="open">打开Message</Button>
 </template>
 
 <script lang="ts">
 import Message from "../../lib/Message.vue";
 import Button from "../../lib/Button.vue";
-import {ref} from "vue";
+import {openMessage} from '../../lib/openMessage';
 
 export default {
     components: {Message, Button},
     setup() {
-        const loading = ref(false);
-        const openLoading = () => {
-            loading.value = true;
-            setTimeout(() => {
-                loading.value = false;
-            }, 1500);
+        const open = () => {
+            openMessage({
+                message: '我是通过函数调用的message',
+                canClose: true,
+                type: 'error',
+                displayTime: 3
+            });
         };
-        return {loading, openLoading};
+        return {open};
     }
 };
 </script>

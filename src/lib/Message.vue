@@ -1,7 +1,7 @@
 <template>
     <teleport to="body">
         <div v-if="messageVisible" class="o-messageWrapper" :class="'o-messageWrapper-'+type">
-            <Icon name="icon-info"/>
+            <Icon :name="'icon-'+type"/>
             <span class="o-message">{{ message }}</span>
             <span v-if="canClose" class="close" @click="close">╳</span>
         </div>
@@ -16,6 +16,9 @@ export default defineComponent({
     name: "Message",
     components: {Icon},
     props: {
+        close: {
+            type: Function
+        },
         message: {
             type: String,
             required: true
@@ -31,8 +34,7 @@ export default defineComponent({
     },
     setup() {
         const messageVisible = ref(true);
-        const close = () => {messageVisible.value = false;};
-        return {messageVisible,close};
+        return {messageVisible, open};
     }
 });
 </script>
@@ -54,6 +56,63 @@ export default defineComponent({
     align-items: center;
     border-radius: 4px;
 
+    &.o-messageWrapper-error {
+        border-color: $o-type-error-disabled;
+        border-style: solid;
+        border-width: 1px;
+        background: $o-type-error-light;
+
+        .o-message {
+            color: $o-type-error;
+        }
+
+        svg {
+            fill: $o-type-error;
+        }
+
+        .close {
+            color: $o-type-error;
+        }
+    }
+
+    &.o-messageWrapper-success {
+        border-color: $o-type-success-disabled;
+        border-style: solid;
+        border-width: 1px;
+        background: $o-type-success-light;
+
+        .o-message {
+            color: $o-type-success;
+        }
+
+        svg {
+            fill: $o-type-success;
+        }
+
+        .close {
+            color: $o-type-success;
+        }
+    }
+
+    &.o-messageWrapper-warning {
+        border-color: $o-type-warning-disabled;
+        border-style: solid;
+        border-width: 1px;
+        background: $o-type-warning-light;
+
+        .o-message {
+            color: $o-type-warning;
+        }
+
+        svg {
+            fill: $o-type-warning;
+        }
+
+        .close {
+            color: $o-type-warning;
+        }
+    }
+
     svg {
         fill: #999999;
         font-size: 18px;
@@ -68,7 +127,7 @@ export default defineComponent({
     }
 
     .close {
-        color: #909399;
+        color: #C0C4CC;
         cursor: pointer;
 
         &:hover {
