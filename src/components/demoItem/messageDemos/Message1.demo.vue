@@ -1,14 +1,14 @@
 <demo>
-组件调用方式11
+常规用法
 </demo>
 <template>
     <Button @click="open">打开Message</Button>
 </template>
 
 <script lang="ts">
-import Message from "../../lib/Message.vue";
-import Button from "../../lib/Button.vue";
-import {openMessage} from '../../lib/openMessage';
+import Message from "../../../lib/Message.vue";
+import Button from "../../../lib/Button.vue";
+import {openMessage} from '../../../lib/openMessage';
 
 export default {
     components: {Message, Button},
@@ -18,8 +18,7 @@ export default {
                 message: '我是通过函数调用的message',
                 canClose: true,
                 type: 'error',
-                displayTime: 300,
-                top:30
+                displayTime: 3,
             });
         };
         return {open};
