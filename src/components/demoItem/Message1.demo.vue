@@ -1,9 +1,9 @@
 <demo>
-组件调用方式
+组件调用方式11
 </demo>
 <template>
-
-    <Button @click="openLoading">打开Loading</Button>
+    <Message message="这是一条普通提示信息" :canClose="true"/>
+    <Button @click="openLoading">打开Message</Button>
 </template>
 
 <script lang="ts">

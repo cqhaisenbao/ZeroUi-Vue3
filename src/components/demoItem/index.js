@@ -18,7 +18,7 @@ import Input5Demo from './inputDemos/Input5.demo.vue';
 import Input6Demo from './inputDemos/Input6.demo.vue';
 import Loading1Demo from './Loading1.demo.vue';
 import Loading2Demo from './Loading2.demo.vue';
-import Message1Demo from './Loading1.demo.vue';
+import Message1Demo from './Message1.demo.vue';
 
 export {
     Button1Demo,
