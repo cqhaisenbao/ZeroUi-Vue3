@@ -34,8 +34,6 @@ import {ref} from 'vue';
 export default {
     components: {Card},
     setup() {
-        const currentTab = ref('first');
-        return {currentTab};
     }
 };
 </script>
