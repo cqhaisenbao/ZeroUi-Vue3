@@ -15,3 +15,9 @@ interface DialogOptions {
     ok: Function,
     cancel: Function
 }
+
+//Loading
+interface LoadingOptions{
+    text:string,
+    background:string
+}

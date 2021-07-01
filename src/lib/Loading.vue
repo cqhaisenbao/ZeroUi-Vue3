@@ -1,22 +1,31 @@
 <template>
-    <div class="o-loading-wrapper" style="'background-color':background">
-        <div class="sk-chase">
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
-            <div class="sk-chase-dot"></div>
+    <teleport to="body">
+        <div v-if="loading" class="o-loading-wrapper" style="'background-color':background">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <div class="textWrapper" v-if="text">
+                <span>{{ text }}</span>
+            </div>
         </div>
-    </div>
+    </teleport>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
     name: "Loading",
     props: {
+        loading: {
+            type: Boolean,
+            default: false
+        },
         text: {
             type: String
         },
@@ -25,7 +34,7 @@ export default defineComponent({
         }
     },
     setup() {
-        return {};
+        return {close};
     }
 });
 </script>
@@ -44,11 +53,17 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
+
     .sk-chase {
         width: 40px;
         height: 40px;
         position: absolute;
         animation: sk-chase 2.5s infinite linear both;
+    }
+
+    .textWrapper {
+        margin-top: 100px;
+        color: #777777;
     }
 }
 

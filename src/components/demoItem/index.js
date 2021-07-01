@@ -16,7 +16,8 @@ import Input3Demo from './inputDemos/Input3.demo.vue';
 import Input4Demo from './inputDemos/Input4.demo.vue';
 import Input5Demo from './inputDemos/Input5.demo.vue';
 import Input6Demo from './inputDemos/Input6.demo.vue';
-import Loading1Demo from './Loading1.demo.vue'
+import Loading1Demo from './Loading1.demo.vue';
+import Loading2Demo from './Loading2.demo.vue';
 
 export {
     Button1Demo,
@@ -37,5 +38,6 @@ export {
     Input4Demo,
     Input5Demo,
     Input6Demo,
-    Loading1Demo
+    Loading1Demo,
+    Loading2Demo
 }
