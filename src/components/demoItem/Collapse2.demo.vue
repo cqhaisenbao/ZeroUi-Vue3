@@ -1,15 +1,15 @@
 <demo>
-常规用法
+手风琴模式
 </demo>
 <template>
     <div>
-        <Collapse v-model:activeName="activeName">
+        <Collapse v-model:activeName="activeName" accordion>
             <CollapseItem name="1">
                 <template #header>狂人日记</template>
                 <template #body>我未必无意之中，不吃了我妹子的几片肉，现在也轮到我自己，……有了四千年吃人履历的我，当初虽然不知道，现在明白，难见真的人</template>
             </CollapseItem>
-            <CollapseItem name="2" :disabled="true">
-                <template #header>支持禁用</template>
+            <CollapseItem name="2">
+                <template #header>阿Q正传</template>
                 <template #body>
                     <div>阿Q正传》是一篇讽刺小说。讽刺是理智的文学的一支，是古典的写实作品。</div>
                     <div>在结构上，鲁迅的《阿Q正传》通过精确描写和作者本人截然不同的阿Q这一人物形象，使得鲁迅本身的痛苦和悲哀浮现出来。</div>
@@ -33,7 +33,7 @@ import {ref} from "vue";
 export default {
     components: {Collapse, CollapseItem},
     setup() {
-        const activeName = ref(['1']);
+        const activeName = ref(['2']);
         return {activeName};
     }
 };

@@ -21,6 +21,7 @@ import Loading2Demo from './Loading2.demo.vue';
 import Message1Demo from './messageDemos/Message1.demo.vue';
 import Message2Demo from './messageDemos/Message2.demo.vue';
 import Collapse1Demo from './Collapse1.demo.vue';
+import Collapse2Demo from './Collapse2.demo.vue';
 
 export {
     Button1Demo,
@@ -45,5 +46,6 @@ export {
     Loading2Demo,
     Message1Demo,
     Message2Demo,
-    Collapse1Demo
+    Collapse1Demo,
+    Collapse2Demo
 }
