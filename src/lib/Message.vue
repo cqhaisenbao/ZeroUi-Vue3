@@ -45,7 +45,12 @@ export default defineComponent({
 <style lang="scss">
 @import "./src/style/theme.scss";
 
+@keyframes enter {
+    from {top: 0}
+}
+
 .o-messageWrapper {
+    animation: enter .3s;
     z-index: 9999;
     min-width: 380px;
     border-color: #EBEEF5;

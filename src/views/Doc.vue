@@ -152,6 +152,7 @@ aside {
                 background: #323232;
                 color: white;
                 font-weight: 500;
+                transition: all .3s linear;
             }
         }
     }

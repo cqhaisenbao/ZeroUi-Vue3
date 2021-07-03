@@ -37,6 +37,9 @@ export default defineComponent({
             return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
         });
         const handleHeaderClick = () => {
+            if (props.disabled) {
+                return;
+            }
             emitter.emit('itemClick', {newActiveName: props.name, uid: internalInstance.parent.uid});
         };
         return {isActive, handleHeaderClick};

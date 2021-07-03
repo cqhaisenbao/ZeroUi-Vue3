@@ -32,7 +32,7 @@ export default defineComponent({
         const horizontalTransition = computed(() => {
             return `${+props.duration}ms width ease-in-out, ${+props.duration}ms padding-left ease-in-out, ${+props.duration}ms padding-right ease-in-out`;
         });
-        const beforeEnter = (el) => {
+        const beforeEnter = (el: HTMLDivElement) => {
             if (props.horizontal) {
                 el.style.transition = horizontalTransition.value;
                 dataset.value.oldPaddingLeft = el.style.paddingLeft;
@@ -49,7 +49,7 @@ export default defineComponent({
                 el.style.paddingBottom = 0;
             }
         };
-        const enter = (el) => {
+        const enter = (el: HTMLDivElement) => {
             dataset.value.oldOverflow = el.style.overflow;
             if (props.horizontal) {
                 if (el.scrollWidth !== 0) {
@@ -70,12 +70,12 @@ export default defineComponent({
             }
             el.style.overflow = 'hidden';
         };
-        const afterEnter = (el) => {
+        const afterEnter = (el: HTMLDivElement) => {
             el.style.transition = '';
             el.style.overflow = dataset.value.oldOverflow;
             props.horizontal ? el.style.width = '' : el.style.height = '';
         };
-        const beforeLeave = (el) => {
+        const beforeLeave = (el: HTMLDivElement) => {
             dataset.value.oldOverflow = el.style.overflow;
             if (props.horizontal) {
                 dataset.value.oldPaddingLeft = el.style.paddingLeft;
@@ -88,7 +88,7 @@ export default defineComponent({
             }
             el.style.overflow = 'hidden';
         };
-        const leave = (el) => {
+        const leave = (el: HTMLDivElement) => {
             if (props.horizontal) {
                 if (el.scrollWidth !== 0) {
                     el.style.transition = horizontalTransition.value;
@@ -105,7 +105,7 @@ export default defineComponent({
                 }
             }
         };
-        const afterLeave = (el) => {
+        const afterLeave = (el: HTMLDivElement) => {
             el.style.transition = '';
             el.style.overflow = dataset.value.oldOverflow;
             if (props.horizontal) {
