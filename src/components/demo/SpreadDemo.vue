@@ -10,7 +10,7 @@ import Demo from "../Demo.vue";
 import {Spread1Demo,Spread2Demo} from '../demoItem';
 
 export default defineComponent({
-    name: "CollapseDemo",
+    name: "SpreadDemo",
     components: {Demo},
     setup() {
         return {Spread1Demo,Spread2Demo};

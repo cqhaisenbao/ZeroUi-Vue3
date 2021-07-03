@@ -5,8 +5,11 @@
         </div>
     </transition>
 </template>
-<script>
-export default {
+
+<script lang="ts">
+import {defineComponent, ref, computed} from "vue";
+
+export default defineComponent({
     name: 'Spread',
     props: {
         visible: {type: Boolean, required: true},
@@ -15,112 +18,117 @@ export default {
         //动画速度——时间
         duration: {type: [Number, String], default: 300}
     },
-    data() {
-        return {
-            dataset: {
-                oldPaddingTop: '',
-                oldPaddingBottom: '',
-                oldPaddingLeft: '',
-                oldPaddingRight: '',
-                oldOverflow: ''
-            }
-        }
-    },
-    computed: {
-        verticalTransition() {
-            return `${+this.duration}ms height ease-in-out, ${+this.duration}ms padding-top ease-in-out, ${+this.duration}ms padding-bottom ease-in-out`;
-        },
-        horizontalTransition() {
-            return `${+this.duration}ms width ease-in-out, ${+this.duration}ms padding-left ease-in-out, ${+this.duration}ms padding-right ease-in-out`;
-        }
-    },
-    methods: {
-        beforeEnter(el) {
-            if (this.horizontal) {
-                el.style.transition = this.horizontalTransition;
-                this.dataset.oldPaddingLeft = el.style.paddingLeft;
-                this.dataset.oldPaddingRight = el.style.paddingRight;
+    setup(props) {
+        const dataset = ref({
+            oldPaddingTop: '',
+            oldPaddingBottom: '',
+            oldPaddingLeft: '',
+            oldPaddingRight: '',
+            oldOverflow: ''
+        });
+        const verticalTransition = computed(() => {
+            return `${+props.duration}ms height ease-in-out, ${+props.duration}ms padding-top ease-in-out, ${+props.duration}ms padding-bottom ease-in-out`;
+        });
+        const horizontalTransition = computed(() => {
+            return `${+props.duration}ms width ease-in-out, ${+props.duration}ms padding-left ease-in-out, ${+props.duration}ms padding-right ease-in-out`;
+        });
+        const beforeEnter = (el) => {
+            if (props.horizontal) {
+                el.style.transition = horizontalTransition.value;
+                dataset.value.oldPaddingLeft = el.style.paddingLeft;
+                dataset.value.oldPaddingRight = el.style.paddingRight;
                 el.style.width = 0;
                 el.style.paddingLeft = 0;
                 el.style.paddingRight = 0;
             } else {
-                el.style.transition = this.verticalTransition;
-                this.dataset.oldPaddingTop = el.style.paddingTop;
-                this.dataset.oldPaddingBottom = el.style.paddingBottom;
+                el.style.transition = verticalTransition.value;
+                dataset.value.oldPaddingTop = el.style.paddingTop;
+                dataset.value.oldPaddingBottom = el.style.paddingBottom;
                 el.style.height = 0;
                 el.style.paddingTop = 0;
                 el.style.paddingBottom = 0;
             }
-        },
-        enter(el) {
-            this.dataset.oldOverflow = el.style.overflow;
-            if (this.horizontal) {
+        };
+        const enter = (el) => {
+            dataset.value.oldOverflow = el.style.overflow;
+            if (props.horizontal) {
                 if (el.scrollWidth !== 0) {
                     el.style.width = el.scrollWidth + 'px';
                 } else {
                     el.style.width = '';
                 }
-                el.style.paddingLeft = this.dataset.oldPaddingLeft;
-                el.style.paddingRight = this.dataset.oldPaddingRight;
+                el.style.paddingLeft = dataset.value.oldPaddingLeft;
+                el.style.paddingRight = dataset.value.oldPaddingRight;
             } else {
                 if (el.scrollHeight !== 0) {
                     el.style.height = el.scrollHeight + 'px';
                 } else {
                     el.style.height = '';
                 }
-                el.style.paddingTop = this.dataset.oldPaddingTop;
-                el.style.paddingBottom = this.dataset.oldPaddingBottom;
+                el.style.paddingTop = dataset.value.oldPaddingTop;
+                el.style.paddingBottom = dataset.value.oldPaddingBottom;
             }
             el.style.overflow = 'hidden';
-        },
-        afterEnter(el) {
+        };
+        const afterEnter = (el) => {
             el.style.transition = '';
-            el.style.overflow = this.dataset.oldOverflow;
-            this.horizontal ? el.style.width = '' : el.style.height = '';
-        },
-        beforeLeave(el) {
-            this.dataset.oldOverflow = el.style.overflow;
-            if (this.horizontal) {
-                this.dataset.oldPaddingLeft = el.style.paddingLeft;
-                this.dataset.oldPaddingRight = el.style.paddingRight;
+            el.style.overflow = dataset.value.oldOverflow;
+            props.horizontal ? el.style.width = '' : el.style.height = '';
+        };
+        const beforeLeave = (el) => {
+            dataset.value.oldOverflow = el.style.overflow;
+            if (props.horizontal) {
+                dataset.value.oldPaddingLeft = el.style.paddingLeft;
+                dataset.value.oldPaddingRight = el.style.paddingRight;
                 el.style.width = el.scrollWidth + 'px';
             } else {
-                this.dataset.oldPaddingTop = el.style.paddingTop;
-                this.dataset.oldPaddingBottom = el.style.paddingBottom;
+                dataset.value.oldPaddingTop = el.style.paddingTop;
+                dataset.value.oldPaddingBottom = el.style.paddingBottom;
                 el.style.height = el.scrollHeight + 'px';
             }
             el.style.overflow = 'hidden';
-        },
-        leave(el) {
-            if (this.horizontal) {
+        };
+        const leave = (el) => {
+            if (props.horizontal) {
                 if (el.scrollWidth !== 0) {
-                    el.style.transition = this.horizontalTransition;
+                    el.style.transition = horizontalTransition.value;
                     el.style.width = 0;
                     el.style.paddingLeft = 0;
                     el.style.paddingRight = 0;
                 }
             } else {
                 if (el.scrollHeight !== 0) {
-                    el.style.transition = this.verticalTransition;
+                    el.style.transition = verticalTransition.value;
                     el.style.height = 0;
                     el.style.paddingTop = 0;
                     el.style.paddingBottom = 0;
                 }
             }
-        },
-        afterLeave(el) {
+        };
+        const afterLeave = (el) => {
             el.style.transition = '';
-            el.style.overflow = this.dataset.oldOverflow;
-            if (this.horizontal) {
+            el.style.overflow = dataset.value.oldOverflow;
+            if (props.horizontal) {
                 el.style.width = '';
-                el.style.paddingLeft = this.dataset.oldPaddingLeft;
-                el.style.paddingRight = this.dataset.oldPaddingRight;
+                el.style.paddingLeft = dataset.value.oldPaddingLeft;
+                el.style.paddingRight = dataset.value.oldPaddingRight;
             } else {
                 el.style.height = '';
-                el.style.paddingTop = this.dataset.oldPaddingTop;
-                el.style.paddingBottom = this.dataset.oldPaddingBottom;
+                el.style.paddingTop = dataset.value.oldPaddingTop;
+                el.style.paddingBottom = dataset.value.oldPaddingBottom;
             }
-        }
+        };
+        return {
+            verticalTransition,
+            horizontalTransition,
+            dataset,
+            beforeEnter,
+            enter,
+            afterEnter,
+            beforeLeave,
+            leave,
+            afterLeave
+        };
     }
-}
+});
 </script>
