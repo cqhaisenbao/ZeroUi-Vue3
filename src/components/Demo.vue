@@ -8,21 +8,22 @@
             <Button @click="hideCode" v-if="codeVisible">隐藏代码</Button>
             <Button @click="showCode" v-else>查看代码</Button>
         </div>
-        <transition name="fade">
-            <pre v-if="codeVisible" class="language-html" v-html="html"></pre>
-        </transition>
+            <Spread :visible="codeVisible">
+                <pre class="language-html" v-html="html"></pre>
+            </Spread>
     </div>
 </template>
 
 <script lang="ts">
 import Button from '../lib/Button.vue';
+import Spread from "../lib/Spread.vue";
 import 'prismjs';
 import 'prismjs/themes/prism-okaidia.css';
 import {computed, ref} from 'vue';
 
 const Prism = (window as any).Prism;
 export default {
-    components: {Button},
+    components: {Button, Spread},
     props: {
         component: Object
     },
@@ -39,68 +40,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "./src/style/theme.scss";
-
-.fade-leave-active {
-    -webkit-animation: flip-out-hor-top 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    animation: flip-out-hor-top 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
-
-.fade-enter-active {
-    -webkit-animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    animation: flip-in-hor-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-@-webkit-keyframes flip-in-hor-bottom {
-    0% {
-        -webkit-transform: rotateX(80deg);
-        transform: rotateX(80deg);
-        opacity: 0;
-    }
-    100% {
-        -webkit-transform: rotateX(0);
-        transform: rotateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes flip-in-hor-bottom {
-    0% {
-        -webkit-transform: rotateX(80deg);
-        transform: rotateX(80deg);
-        opacity: 0;
-    }
-    100% {
-        -webkit-transform: rotateX(0);
-        transform: rotateX(0);
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes flip-out-hor-top {
-    0% {
-        -webkit-transform: rotateX(0);
-        transform: rotateX(0);
-        opacity: 1;
-    }
-    100% {
-        -webkit-transform: rotateX(70deg);
-        transform: rotateX(70deg);
-        opacity: 0;
-    }
-}
-
-@keyframes flip-out-hor-top {
-    0% {
-        -webkit-transform: rotateX(0);
-        transform: rotateX(0);
-        opacity: 1;
-    }
-    100% {
-        -webkit-transform: rotateX(70deg);
-        transform: rotateX(70deg);
-        opacity: 0;
-    }
-}
 
 .demo {
     border: 1px solid $o-border-color;

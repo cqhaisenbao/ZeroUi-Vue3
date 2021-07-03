@@ -4,22 +4,23 @@
             <slot name="header"></slot>
             <Icon name="icon-menuright"/>
         </div>
-        <transition name="slide-fade">
-            <div v-show="isActive" class="o-collapse-item-body">
+        <Spread :visible="isActive">
+            <div class="o-collapse-item-body">
                 <slot name="body"></slot>
             </div>
-        </transition>
+        </Spread>
     </div>
 </template>
 
 <script lang="ts">
 import {computed, defineComponent, inject, getCurrentInstance} from 'vue';
 import Icon from "./Icon.vue";
+import Spread from './Spread.vue';
 import {emitter} from './Collapse.vue';
 
 export default defineComponent({
     name: "CollapseItem",
-    components: {Icon},
+    components: {Icon, Spread},
     props: {
         name: {
             type: String,
@@ -45,24 +46,6 @@ export default defineComponent({
 
 <style lang="scss">
 @import "./src/style/theme.scss";
-
-.slide-fade-enter-active {
-    transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-    transition: all 0.3s ease-out;
-}
-
-.slide-fade-enter-from {
-    transform: translateY(-20px);
-    opacity: 0;
-}
-
-.slide-fade-leave-to {
-    transform: translateY(-20px);
-    opacity: 0;
-}
 
 .o-collapse-item {
 
