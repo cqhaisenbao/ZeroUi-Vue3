@@ -1,8 +1,8 @@
 <template>
     <div class="o-collapse-item" :class="{isActive:isActive}">
         <div class="o-collapse-item-header" @click="handleHeaderClick">
-            <slot name="heading"></slot>
-            <Icon :class="{isActive:isActive}" name="icon-menuright"/>
+            <slot name="header"></slot>
+            <Icon name="icon-menuright"/>
         </div>
         <div v-show="isActive" class="o-collapse-item-body">
             <slot name="body"></slot>
@@ -11,34 +11,31 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref} from 'vue';
+import {computed, defineComponent, inject} from 'vue';
 import Icon from "./Icon.vue";
+import {emitter} from './Collapse.vue';
 
 export default defineComponent({
     name: "CollapseItem",
     components: {Icon},
     props: {
-        selected: {
-            type: Boolean,
-            default: false
-        },
         name: {
             type: String,
             required: true
+        },
+        disabled: {
+            type: Boolean,
+            required: false
         }
     },
-    inject: ['collapse'],
     setup(props, context) {
-        const isActive = ref(false);
-        const click = () => {
-            context.emit('itemClick', context);
+        const isActive = computed(() => {
+            return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
+        });
+        const handleHeaderClick = () => {
+            emitter.emit('itemClick', props.name);
         };
-        const setActive = () => isActive.value = true;
-        const handleHeaderClick=()=>{
-            console.log('handleHeaderClick');
-            this.dispatch('ElCollapse', 'item-click', this);
-        }
-        return {isActive, click,setActive,handleHeaderClick};
+        return {isActive, handleHeaderClick};
     }
 });
 </script>
@@ -47,6 +44,7 @@ export default defineComponent({
 @import "./src/style/theme.scss";
 
 .o-collapse-item {
+
     .o-collapse-item-header {
         display: flex;
         align-items: center;
@@ -61,18 +59,10 @@ export default defineComponent({
         transition: border-bottom-color .3s;
         outline: none;
 
-        &.isActive {
-            border-bottom-color: transparent;
-        }
-
         svg {
             margin: 0 8px 0 auto;
             transition: transform .3s;
             font-weight: 300;
-
-            &.isActive {
-                transform: rotate(90deg);
-            }
         }
     }
 
@@ -84,6 +74,17 @@ export default defineComponent({
         font-size: 13px;
         color: #303133;
         line-height: 2;
+    }
+
+    &.isActive {
+
+        .o-collapse-item-header {
+            border-bottom-color: transparent;
+
+            svg {
+                transform: rotate(90deg);
+            }
+        }
     }
 }
 </style>
