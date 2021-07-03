@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject} from 'vue';
+import {computed, defineComponent, inject, getCurrentInstance, ref} from 'vue';
 import Icon from "./Icon.vue";
 import {emitter} from './Collapse.vue';
 
@@ -29,14 +29,12 @@ export default defineComponent({
         }
     },
     setup(props, context) {
+        const internalInstance = getCurrentInstance();
         const isActive = computed(() => {
             return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
         });
         const handleHeaderClick = () => {
-            if (props.disabled) {
-                return;
-            }
-            emitter.emit('itemClick', props.name);
+            emitter.emit('itemClick', {newActiveName: props.name, uid: internalInstance.parent.uid});
         };
         return {isActive, handleHeaderClick};
     }
@@ -58,7 +56,7 @@ export default defineComponent({
         cursor: pointer;
         border-bottom: 1px solid #ebeef5;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
         transition: border-bottom-color .3s;
         outline: none;
 
