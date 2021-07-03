@@ -10,7 +10,11 @@ import {defineComponent} from 'vue';
 export default defineComponent({
     name: "Tab",
     props: {
-        title: String
+        title: String,
+        name: {
+            type: String,
+            required: true
+        }
     },
     setup() {
         return {};

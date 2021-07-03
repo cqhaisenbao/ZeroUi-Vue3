@@ -97,6 +97,7 @@ export default defineComponent({
     position: relative;
     font-size: 14px;
     display: inline-block;
+    margin-right: 10px;
 
     .o-input-inner {
         -webkit-appearance: none;

@@ -50,7 +50,7 @@ export default defineComponent({
 <style lang="scss">
 @import "./src/style/theme.scss";
 
-$h: 32px;
+$h: 36px;
 $radius: 4px;
 .zero-button {
     box-sizing: border-box;
@@ -117,8 +117,8 @@ $radius: 4px;
 
     &.zero-size-small {
         font-size: 12px;
-        height: 22px;
-        padding: 0 8px;
+        height: 26px;
+        padding: 0 10px;
     }
 
     &.zero-theme-button {

@@ -6,7 +6,7 @@ export const openLoading = (options: LoadingOptions) => {
     const div = document.createElement('div');
     document.body.appendChild(div);
     const close = () => {
-        app.unmount();
+        app.unmount(div);
         div.remove();
     };
     const app = createApp({
@@ -19,6 +19,6 @@ export const openLoading = (options: LoadingOptions) => {
         }
     });
     app.mount(div);
-    app.$close = close;
+    Object.assign(app,{'$close':close})
     return app;
 };

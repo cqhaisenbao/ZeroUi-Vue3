@@ -9,7 +9,7 @@ import {defineComponent} from 'vue';
 import './iconfont';
 
 export default defineComponent({
-    name: "icon",
+    name: "Icon",
     props: {
         name: {
             type: String,
@@ -19,16 +19,11 @@ export default defineComponent({
         fill: {
             type: String,
         },
-        // fontSize: {
-        //     type: Number,
-        //     default: 36
-        // }
     },
     computed: {
         style() {
             return {
                 fill: this.fill,
-                // 'font-size': this.fontSize + 'px'
             };
         }
     },
