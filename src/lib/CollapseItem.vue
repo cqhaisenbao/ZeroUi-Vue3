@@ -1,6 +1,6 @@
 <template>
-    <div class="o-collapse-item" :class="{isActive:isActive}">
-        <div class="o-collapse-item-header" @click="handleHeaderClick">
+    <div class="o-collapse-item" :class="{isActive}">
+        <div class="o-collapse-item-header" :class="{disabled}" @click="handleHeaderClick">
             <slot name="header"></slot>
             <Icon name="icon-menuright"/>
         </div>
@@ -33,6 +33,9 @@ export default defineComponent({
             return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
         });
         const handleHeaderClick = () => {
+            if (props.disabled) {
+                return;
+            }
             emitter.emit('itemClick', props.name);
         };
         return {isActive, handleHeaderClick};
@@ -55,9 +58,18 @@ export default defineComponent({
         cursor: pointer;
         border-bottom: 1px solid #ebeef5;
         font-size: 13px;
-        font-weight: 500;
+        font-weight: 600;
         transition: border-bottom-color .3s;
         outline: none;
+
+        &.disabled {
+            cursor: not-allowed;
+            color: rgba(0, 0, 0, .25);
+
+            svg {
+                fill: rgba(0, 0, 0, .25);
+            }
+        }
 
         svg {
             margin: 0 8px 0 auto;
