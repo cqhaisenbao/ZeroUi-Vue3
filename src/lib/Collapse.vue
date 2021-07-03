@@ -1,16 +1,22 @@
 <template>
-   <div>collapse</div>
+    <div class="o-collapse">
+        <slot></slot>
+    </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue';
+import {defineComponent, onMounted, ref, watchEffect} from 'vue';
 
 export default defineComponent({
     name: "Collapse",
     props: {
+        activeName: {
+            type: String
+        }
     },
-    setup() {
-        return {};
+    setup(props, context) {
+        const defaults = context.slots.default();
+        return {defaults};
     }
 });
 </script>
@@ -18,4 +24,7 @@ export default defineComponent({
 <style lang="scss">
 @import "./src/style/theme.scss";
 
+.o-collapse {
+    border-top: 1px solid #ebeef5;
+}
 </style>
