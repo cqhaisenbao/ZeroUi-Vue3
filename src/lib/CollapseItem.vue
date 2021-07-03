@@ -4,14 +4,16 @@
             <slot name="header"></slot>
             <Icon name="icon-menuright"/>
         </div>
-        <div v-show="isActive" class="o-collapse-item-body">
-            <slot name="body"></slot>
-        </div>
+        <transition name="slide-fade">
+            <div v-show="isActive" class="o-collapse-item-body">
+                <slot name="body"></slot>
+            </div>
+        </transition>
     </div>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, getCurrentInstance, ref} from 'vue';
+import {computed, defineComponent, inject, getCurrentInstance} from 'vue';
 import Icon from "./Icon.vue";
 import {emitter} from './Collapse.vue';
 
@@ -28,7 +30,7 @@ export default defineComponent({
             required: false
         }
     },
-    setup(props, context) {
+    setup(props) {
         const internalInstance = getCurrentInstance();
         const isActive = computed(() => {
             return inject('collapse').activeName.findIndex(item => item === props.name) >= 0;
@@ -43,6 +45,24 @@ export default defineComponent({
 
 <style lang="scss">
 @import "./src/style/theme.scss";
+
+.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from {
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.slide-fade-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
+}
 
 .o-collapse-item {
 
