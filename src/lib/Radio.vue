@@ -1,13 +1,11 @@
 <template>
-    <span class="o-radio-wrapper">
+    <span class="o-radio-wrapper" :class="{vertical}" v-for="item in options" :key="item.value">
         <label class="o-radio">
             <span class="o-radio-input">
-                <span class="o-radio-inner" :class="{'is-checked':label===value}"></span>
-                <input @click="select" type="radio" :value="label" class="o-radio-original">
+                <span class="o-radio-inner" :class="{'is-checked':item.value===value}"></span>
+                <input @click="select" type="radio" :value="item.value" class="o-radio-original">
             </span>
-            <span class="o-radio-label" :class="{'is-checked':label===value}">
-            <slot/>
-        </span>
+            <span class="o-radio-label" :class="{'is-checked':item.label===value}">{{ item.label }}</span>
         </label>
     </span>
 </template>
@@ -18,13 +16,17 @@ import {defineComponent} from 'vue';
 export default defineComponent({
     name: "Radio",
     props: {
-        label: {
-            type: String,
+        options: {
+            type: Array,
             required: true
         },
         value: {
             type: String,
             required: true
+        },
+        vertical: {
+            type: Boolean,
+            default: false
         }
     },
     setup(props, context) {
@@ -43,6 +45,11 @@ export default defineComponent({
 @import "./src/style/theme.scss";
 
 .o-radio-wrapper {
+
+    &.vertical {
+        display: block;
+    }
+
     .o-radio {
         color: #606266;
         font-weight: 500;

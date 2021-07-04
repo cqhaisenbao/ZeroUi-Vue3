@@ -1,8 +1,8 @@
 <demo>
-常规用法
+垂直排列
 </demo>
 <template>
-    <Radio v-model:value="selectedValue" :options="options"/>
+    <Radio v-model:value="selectedValue" :options="options" vertical/>
 </template>
 
 <script lang="ts">

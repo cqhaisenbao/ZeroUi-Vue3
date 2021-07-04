@@ -25,7 +25,8 @@ import Collapse1Demo from './Collapse1.demo.vue';
 import Collapse2Demo from './Collapse2.demo.vue';
 import Spread1Demo from './Spread1.demo.vue';
 import Spread2Demo from './Spread2.demo.vue';
-import Radio1Demo from './Radio1.demo.vue'
+import Radio1Demo from './Radio1.demo.vue';
+import Radio2Demo from './Radio2.demo.vue'
 
 export {
     Button1Demo,
@@ -55,5 +56,6 @@ export {
     Collapse2Demo,
     Spread1Demo,
     Spread2Demo,
-    Radio1Demo
+    Radio1Demo,
+    Radio2Demo
 }
