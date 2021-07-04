@@ -2,7 +2,8 @@
 常规用法
 </demo>
 <template>
-    radio
+    <Radio v-model:value="selectedValue" label="watermelon">西瓜</Radio>
+    <Radio v-model:value="selectedValue" label="lemon">柠檬</Radio>
 </template>
 
 <script lang="ts">
@@ -12,6 +13,8 @@ import {ref} from 'vue';
 export default {
     components: {Radio},
     setup() {
+        const selectedValue = ref('watermelon');
+        return {selectedValue};
     }
 };
 </script>
