@@ -2,7 +2,7 @@
     <Teleport to="body">
         <div v-if="visible">
             <div class="zero-dialog-overlay" @click="onClickOverlay"></div>
-            <div class="zero-dialog-wrapper">
+            <div class="zero-dialog-wrapper" :draggable="draggable" @dragend="x" @dragstart="y">
                 <div class="zero-dialog">
                     <header>
                         <slot name="title">
@@ -36,6 +36,10 @@ export default defineComponent({
         title: {
             type: String,
             default: '请传入标题'
+        },
+        draggable: {
+            type: Boolean,
+            default: false
         },
         visible: {
             type: Boolean,
@@ -75,7 +79,20 @@ export default defineComponent({
             props.cancel();
             close();
         };
-        return {close, onClickOverlay, ok, cancel, isLoading};
+        const x1 = ref(null);
+        const y1 = ref(null);
+        const x = (e) => {
+            const {x, y} = e;
+            const {offsetTop, offsetLeft} = e.target;
+            e.target.style.top = offsetTop - (y1.value - y) + 'px';
+            e.target.style.left = offsetLeft - (x1.value - x) + 'px';
+        };
+        const y = (e) => {
+            const {x, y} = e;
+            x1.value = x;
+            y1.value = y;
+        };
+        return {close, onClickOverlay, ok, cancel, isLoading, x, y};
     }
 });
 </script>

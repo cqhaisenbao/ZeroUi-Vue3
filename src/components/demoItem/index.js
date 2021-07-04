@@ -2,8 +2,9 @@ import Button1Demo from './buttonDemos/Button1.demo.vue';
 import Button2Demo from './buttonDemos/Button2.demo.vue';
 import Button3Demo from './buttonDemos/Button3.demo.vue';
 import Button4Demo from './buttonDemos/Button4.demo.vue';
-import Dialog1Demo from './Dialog1.demo.vue';
-import Dialog2Demo from './Dialog2.demo.vue';
+import Dialog1Demo from './DialogDemos/Dialog1.demo.vue';
+import Dialog2Demo from './DialogDemos/Dialog2.demo.vue';
+import Dialog3Demo from './DialogDemos/Dialog3.demo.vue';
 import Switch1Demo from './Switch1.demo.vue';
 import Switch2Demo from './Switch2.demo.vue';
 import Tabs1Demo from './Tabs1.demo.vue';
@@ -32,6 +33,7 @@ export {
     Button4Demo,
     Dialog1Demo,
     Dialog2Demo,
+    Dialog3Demo,
     Switch1Demo,
     Switch2Demo,
     Tabs1Demo,
