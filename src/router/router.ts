@@ -12,6 +12,7 @@ import LoadingDemo from "../components/demo/LoadingDemo.vue";
 import MessageDemo from "../components/demo/MessageDemo.vue";
 import CollapseDemo from "../components/demo/CollapseDemo.vue";
 import SpreadDemo from "../components/demo/SpreadDemo.vue";
+import RadioDemo from "../components/demo/RadioDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -38,7 +39,8 @@ const router = createRouter({
                 {path: "loading", component: LoadingDemo},
                 {path: "message", component: MessageDemo},
                 {path: "collapse", component: CollapseDemo},
-                {path: "spread", component: SpreadDemo}
+                {path: "spread", component: SpreadDemo},
+                {path: "radio", component: RadioDemo}
             ]
         }
     ]
