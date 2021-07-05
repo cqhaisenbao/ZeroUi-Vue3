@@ -27,12 +27,14 @@ export default defineComponent({
 
 <style lang="scss">
 .tooltip {
+    margin-left: 40px;
     position: relative;
     display: inline-block;
 
     .tooltiptext {
         visibility: hidden;
         min-width: 120px;
+        font-size: 14px;
         white-space: nowrap;
         background-color: #555;
         color: #fff;
@@ -42,33 +44,39 @@ export default defineComponent({
         margin-left: 5px;
         position: absolute;
         z-index: 9999;
-        top: 50%;
-        transform: translate(0, -50%);
-        left: 110%;
         opacity: 0;
         transition: opacity 0.3s;
 
-        &::after {
+        &::after{
             content: "";
             position: absolute;
-            top: 50%;
-            left: 0;
-            margin-left: -5px;
-            border-width: 6px;
-            border-style: solid;
-            transform: translate(-50%, -50%) rotate(90deg);
             border-color: #555 transparent transparent transparent;
+            border-style: solid;
+            border-width: 6px;
+        }
+
+        &.right {
+            top: 50%;
+            transform: translate(0, -50%);
+            left: 110%;
+
+            &::after {
+                top: 50%;
+                left: 0;
+                margin-left: -5px;
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
         }
 
         &.top {
-            left: 0;
-            top: -80%;
-            margin-left: -60px;
+            right: 50%;
+            top: -130%;
+            transform: translate(50%);
 
             &::after {
                 top: 100%;
                 left: 50%;
-                transform: rotate(360deg);
+                transform:translate(-50%) rotate(360deg);
             }
         }
     }

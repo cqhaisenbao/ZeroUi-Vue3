@@ -2,10 +2,10 @@
 常规用法
 </demo>
 <template>
-    <Tooltip content="我是出现在右边的文字">
+    <Tooltip content="我是出现在右边的文字我是出现在右边的文字">
         <Button>右边</Button>
     </Tooltip>
-    <Tooltip content="我是出现在上边的文字" direction="top">
+    <Tooltip content="我是出现在上边的文字我是2323424" direction="top">
         <Button>上边</Button>
     </Tooltip>
 </template>
