@@ -16,7 +16,7 @@
                     </li>
                 </ol>
                 <h3>组件列表</h3>
-                <ol>
+                <ol class="components">
                     <li>
                         <router-link to="/doc/switch">Switch 组件</router-link>
                     </li>
@@ -52,6 +52,9 @@
                     </li>
                     <li>
                         <router-link to="/doc/radio">Radio 组件</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/doc/dropdown">Dropdown 组件</router-link>
                     </li>
                 </ol>
             </aside>
@@ -109,6 +112,10 @@ $aside-index: 0;
         width: 260px;
 
         > ol {
+            &.components {
+                padding-bottom: 50px;
+            }
+
             > li {
                 &:hover {
                     background: $o-type-info-light;
