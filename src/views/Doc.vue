@@ -59,6 +59,9 @@
                     <li>
                         <router-link to="/doc/tooltip">Tooltip 组件</router-link>
                     </li>
+                    <li>
+                        <router-link to="/doc/slides">Slides 组件</router-link>
+                    </li>
                 </ol>
             </aside>
             <main>

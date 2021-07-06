@@ -15,6 +15,7 @@ import SpreadDemo from "../components/demo/SpreadDemo.vue";
 import RadioDemo from "../components/demo/RadioDemo.vue";
 import DropdownDemo from "../components/demo/DropdownDemo.vue";
 import TooltipDemo from "../components/demo/TooltipDemo.vue";
+import SlidesDemo from "../components/demo/SlidesDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -44,7 +45,8 @@ const router = createRouter({
                 {path: "spread", component: SpreadDemo},
                 {path: "radio", component: RadioDemo},
                 {path: "dropdown", component: DropdownDemo},
-                {path: "tooltip", component: TooltipDemo}
+                {path: "tooltip", component: TooltipDemo},
+                {path: "slides", component: SlidesDemo}
             ]
         }
     ]

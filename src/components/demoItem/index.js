@@ -29,6 +29,7 @@ import Radio1Demo from './Radio1.demo.vue';
 import Radio2Demo from './Radio2.demo.vue'
 import Dropdown1Demo from './Dropdown1.demo.vue'
 import Tooltip1Demo from './Tooltip1.demo.vue'
+import Slides1Demo from './Slides1.demo.vue'
 
 export {
     Button1Demo,
@@ -61,5 +62,6 @@ export {
     Radio1Demo,
     Radio2Demo,
     Dropdown1Demo,
-    Tooltip1Demo
+    Tooltip1Demo,
+    Slides1Demo
 }
