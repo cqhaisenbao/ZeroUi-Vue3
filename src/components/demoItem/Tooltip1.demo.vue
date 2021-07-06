@@ -1,12 +1,18 @@
 <demo>
-常规用法
+不同方向
 </demo>
 <template>
-    <Tooltip content="我是出现在右边的文字我是出现在右边的文字">
+    <Tooltip content="Top 提示文字" direction="top">
+        <Button>上边</Button>
+    </Tooltip>
+    <Tooltip content="Right 提示文字" direction="right">
         <Button>右边</Button>
     </Tooltip>
-    <Tooltip content="我是出现在上边的文字我是2323424" direction="top">
-        <Button>上边</Button>
+    <Tooltip content="Bottom 提示文字" direction="bottom">
+        <Button>下边</Button>
+    </Tooltip>
+    <Tooltip content="Left 提示文字" direction="left">
+        <Button>左边</Button>
     </Tooltip>
 </template>
 

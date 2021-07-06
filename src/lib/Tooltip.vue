@@ -79,6 +79,31 @@ export default defineComponent({
                 transform:translate(-50%) rotate(360deg);
             }
         }
+
+        &.bottom{
+            right: 50%;
+            top: 130%;
+            transform: translate(50%);
+
+            &::after {
+                top: 0;
+                left: 50%;
+                transform:translate(-50%,-100%) rotate(180deg);
+            }
+        }
+
+        &.left {
+            top: 50%;
+            transform: translate(0, -50%);
+            right: 120%;
+
+            &::after {
+                top: 50%;
+                right: 0;
+                margin-left: -5px;
+                transform: translate(100%, -50%) rotate(270deg);
+            }
+        }
     }
 
     &:hover {
