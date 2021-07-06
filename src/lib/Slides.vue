@@ -5,7 +5,6 @@
             <slot v-if="false"></slot>
             <div>
                 <component :is="item" v-show="index===active"></component>
-                <!--                <component :is="item"></component>-->
             </div>
         </div>
         <div class="dotWrapper">
@@ -15,15 +14,10 @@
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
     <br>
-    <!--    <div style="text-align:center">-->
-    <!--        <span class="dot" onclick="currentSlide(1)"></span>-->
-    <!--        <span class="dot" onclick="currentSlide(2)"></span>-->
-    <!--        <span class="dot" onclick="currentSlide(3)"></span>-->
-    <!--    </div>-->
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, PropType, ref} from 'vue';
+import {defineComponent, onMounted, onUnmounted, ref} from 'vue';
 
 export default defineComponent({
     name: "Slides",
@@ -31,17 +25,21 @@ export default defineComponent({
     setup(props, context) {
         const defaults = context.slots.default();
         const active = ref(0);
+        const timer = ref<any>(0);
         const currentSlide = (val: number) => {
             active.value = val;
         };
         onMounted(() => {
-            setInterval(() => {
+            timer.value = setInterval(() => {
                 if (active.value === defaults.length - 1) {
                     active.value = 0;
                 } else {
                     active.value += 1;
                 }
             }, 3000);
+        });
+        onUnmounted(() => {
+            clearInterval(timer.value);
         });
         return {defaults, active, currentSlide};
     }
