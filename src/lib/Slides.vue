@@ -10,8 +10,8 @@
         <div class="dotWrapper">
             <span v-for="(item,index) in defaults" :key="index" class="dot" @click="currentSlide(index)"></span>
         </div>
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <a class="prev" @click="reduceActive">&#10094;</a>
+        <a class="next" @click="addActive">&#10095;</a>
     </div>
     <br>
 </template>
@@ -23,25 +23,42 @@ export default defineComponent({
     name: "Slides",
     props: {},
     setup(props, context) {
-        const defaults = context.slots.default();
+        const defaults = context.slots.default!();
         const active = ref(0);
         const timer = ref<any>(0);
         const currentSlide = (val: number) => {
             active.value = val;
         };
+        const addActive = () => {
+            if (active.value === defaults.length - 1) {
+                active.value = 0;
+            } else {
+                active.value += 1;
+            }
+        };
+        const reduceActive = () => {
+            if (active.value === 0) {
+                active.value = defaults.length - 1;
+            } else {
+                active.value -= 1;
+            }
+        };
+        const setActive = () => {
+            if (active.value === defaults.length - 1) {
+                active.value = 0;
+            } else {
+                active.value += 1;
+            }
+        };
         onMounted(() => {
             timer.value = setInterval(() => {
-                if (active.value === defaults.length - 1) {
-                    active.value = 0;
-                } else {
-                    active.value += 1;
-                }
+                setActive();
             }, 3000);
         });
         onUnmounted(() => {
             clearInterval(timer.value);
         });
-        return {defaults, active, currentSlide};
+        return {defaults, active, currentSlide, addActive, reduceActive};
     }
 });
 </script>
