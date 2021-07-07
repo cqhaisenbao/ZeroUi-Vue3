@@ -62,6 +62,9 @@
                     <li>
                         <router-link to="/doc/slides">Slides 组件</router-link>
                     </li>
+                    <li>
+                        <router-link to="/doc/sticky">Sticky 组件</router-link>
+                    </li>
                 </ol>
             </aside>
             <main>
