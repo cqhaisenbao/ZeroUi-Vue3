@@ -1,10 +1,9 @@
 <template>
-    <div class="slideshow-container">
-        <div class="mySlides fade" v-for="(item,index) in defaults" :key="index">
+    <div class="o-slideshow-container">
+        <div class="o-slides" v-for="(item,index) in defaults" :key="index" :class=getClass(index)>
             <div class="numbertext">{{ active + 1 }} / {{ defaults.length }}</div>
-            <slot v-if="false"></slot>
-            <div>
-                <component :is="item" v-show="index===active"></component>
+            <div class="fade">
+                <component :is="item" v-if="index===active"></component>
             </div>
         </div>
         <div class="dotWrapper">
@@ -14,6 +13,7 @@
         <a class="next" @click="addActive">&#10095;</a>
     </div>
     <br>
+    <slot v-if="false"></slot>
 </template>
 
 <script lang="ts">
@@ -28,6 +28,13 @@ export default defineComponent({
         const timer = ref<any>(0);
         const currentSlide = (val: number) => {
             active.value = val;
+        };
+        const getClass = (val: number) => {
+            if (val === active.value) {
+                return 'current';
+            } else {
+                return '';
+            }
         };
         const addActive = () => {
             if (active.value === defaults.length - 1) {
@@ -58,7 +65,7 @@ export default defineComponent({
         onUnmounted(() => {
             clearInterval(timer.value);
         });
-        return {defaults, active, currentSlide, addActive, reduceActive};
+        return {defaults, active, currentSlide, addActive, reduceActive, getClass};
     }
 });
 </script>
@@ -74,10 +81,52 @@ export default defineComponent({
     transform: translate(-50%, -60%);
 }
 
-.slideshow-container {
+.o-slideshow-container {
     max-width: 1000px;
     position: relative;
     margin: auto;
+    display: flex;
+
+    .o-slides {
+        opacity: 0.5;
+        transition: all 1s;
+
+        &.current {
+            width: 100%;
+            opacity: 1;
+
+            .fade {
+                div {
+                    transition: width 1s;
+                }
+            }
+        }
+
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    .dotWrapper {
+        .dot {
+            cursor: pointer;
+            height: 10px;
+            width: 10px;
+            margin: 0 4px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+
+            &:hover {
+                background-color: #717171;
+            }
+        }
+    }
 }
 
 .prev, .next {
@@ -102,50 +151,5 @@ export default defineComponent({
 
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
-.dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 4px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
-}
-
-.fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-    .prev, .next, .text {font-size: 11px}
 }
 </style>
