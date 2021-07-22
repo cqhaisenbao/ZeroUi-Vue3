@@ -32,6 +32,7 @@ import Tooltip1Demo from './Tooltip1.demo.vue'
 import Slides1Demo from './Slides1.demo.vue'
 import Sticky1Demo from './Sticky1.demo.vue'
 import Grid1Demo from './Grid1.demo.vue'
+import Grid2Demo from './Grid2.demo.vue'
 
 export {
     Button1Demo,
@@ -67,5 +68,6 @@ export {
     Tooltip1Demo,
     Slides1Demo,
     Sticky1Demo,
-    Grid1Demo
+    Grid1Demo,
+    Grid2Demo
 }
