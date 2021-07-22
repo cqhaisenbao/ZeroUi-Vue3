@@ -1,29 +1,48 @@
 <demo>
-支持间隔
+支持偏移
 </demo>
 <template>
-    <Grid :gutter="10">
-        <GridCol :span="16">
+    <Grid :gutter="20">
+        <GridCol :span="6">
             <div class="demo1"></div>
         </GridCol>
-        <GridCol :span="8">
+        <GridCol :span="6">
             <div class="demo2"></div>
         </GridCol>
-        <GridCol :span="4">
+        <GridCol :span="6">
+            <div class="demo1"></div>
+        </GridCol>
+        <GridCol :span="6">
+            <div class="demo2"></div>
+        </GridCol>
+    </Grid>
+    <Grid :gutter="20">
+        <GridCol :span="6" :offset="6">
+            <div class="demo1"></div>
+        </GridCol>
+        <GridCol :span="6" :offset="12">
+            <div class="demo2"></div>
+        </GridCol>
+    </Grid>
+    <Grid :gutter="20">
+        <GridCol :span="12">
+            <div class="demo1"></div>
+        </GridCol>
+        <GridCol :span="3">
             <div class="demo1"></div>
         </GridCol>
     </Grid>
-    <Grid :gutter="40">
+    <Grid :gutter="20">
         <GridCol :span="6">
             <div class="demo1"></div>
         </GridCol>
-        <GridCol :span="6">
+        <GridCol :span="2">
             <div class="demo2"></div>
         </GridCol>
-        <GridCol :span="6">
+        <GridCol :span="3" :offset="7">
             <div class="demo1"></div>
         </GridCol>
-        <GridCol :span="4">
+        <GridCol :span="4" :offset="7">
             <div class="demo2"></div>
         </GridCol>
     </Grid>
@@ -57,5 +76,9 @@ $bg: #2b85e4;
 
 .demo2 {
     @include col-style(20)
+}
+
+.demo3 {
+    @include col-style(30)
 }
 </style>

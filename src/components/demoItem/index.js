@@ -33,6 +33,7 @@ import Slides1Demo from './Slides1.demo.vue'
 import Sticky1Demo from './Sticky1.demo.vue'
 import Grid1Demo from './Grid1.demo.vue'
 import Grid2Demo from './Grid2.demo.vue'
+import Grid3Demo from './Grid3.demo.vue'
 
 export {
     Button1Demo,
@@ -69,5 +70,6 @@ export {
     Slides1Demo,
     Sticky1Demo,
     Grid1Demo,
-    Grid2Demo
+    Grid2Demo,
+    Grid3Demo
 }

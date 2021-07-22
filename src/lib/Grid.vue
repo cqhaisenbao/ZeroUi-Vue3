@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref, watchEffect} from 'vue';
+import {defineComponent, onMounted, provide, ref, watchEffect} from 'vue';
 
 export default defineComponent({
     name: "Grid",
@@ -21,13 +21,14 @@ export default defineComponent({
             watchEffect(() => {
                 if (gutter) {
                     Array.from(gutterRef.value.children).forEach((item: any) => {
-                        if (item.nextSibling.className === 'zeroGridCol') {
-                            item.style.marginRight = gutter + 'px';
+                        if (item.nextSibling.className === 'zeroGridCol' || (!item.nextSibling.className && !item.previousElementSibling)) {
+                            item.style.paddingRight = gutter + 'px';
                         }
                     });
                 }
             });
         });
+        // provide('gutter', gutter);
         return {gutterRef};
     }
 });
