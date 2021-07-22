@@ -15,7 +15,7 @@ export default {
         format: 'umd',
         plugins: [terser()]
     }, {
-        name: 'Gulu',
+        name: 'zero',
         file: 'dist/lib/zero.esm.js',
         format: 'es',
         plugins: [terser()]

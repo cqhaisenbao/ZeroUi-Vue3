@@ -6,13 +6,13 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
 
 export default defineComponent({
     name: "Tooltip",
     props: {
         content: {
-            type: String,
+            type: String as PropType<string>,
             required: true
         },
         direction: {
@@ -47,7 +47,7 @@ export default defineComponent({
         opacity: 0;
         transition: opacity 0.3s;
 
-        &::after{
+        &::after {
             content: "";
             position: absolute;
             border-color: #555 transparent transparent transparent;
@@ -76,11 +76,11 @@ export default defineComponent({
             &::after {
                 top: 100%;
                 left: 50%;
-                transform:translate(-50%) rotate(360deg);
+                transform: translate(-50%) rotate(360deg);
             }
         }
 
-        &.bottom{
+        &.bottom {
             right: 50%;
             top: 130%;
             transform: translate(50%);
@@ -88,7 +88,7 @@ export default defineComponent({
             &::after {
                 top: 0;
                 left: 50%;
-                transform:translate(-50%,-100%) rotate(180deg);
+                transform: translate(-50%, -100%) rotate(180deg);
             }
         }
 

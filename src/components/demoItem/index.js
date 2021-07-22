@@ -31,6 +31,7 @@ import Dropdown1Demo from './Dropdown1.demo.vue'
 import Tooltip1Demo from './Tooltip1.demo.vue'
 import Slides1Demo from './Slides1.demo.vue'
 import Sticky1Demo from './Sticky1.demo.vue'
+import Grid1Demo from './Grid1.demo.vue'
 
 export {
     Button1Demo,
@@ -65,5 +66,6 @@ export {
     Dropdown1Demo,
     Tooltip1Demo,
     Slides1Demo,
-    Sticky1Demo
+    Sticky1Demo,
+    Grid1Demo
 }

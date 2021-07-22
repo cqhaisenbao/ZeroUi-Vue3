@@ -4,7 +4,7 @@
             <slot></slot>
         </div>
         <slot name="dropdown" v-if="false"></slot>
-        <ul v-show="dropdownItemVisible">
+        <ul v-if="dropdownItemVisible" class="o-dropdown-wrapper">
             <li v-for="item in dropdowns" :key="item" class="dropdown-item">{{ item }}</li>
         </ul>
     </div>
@@ -45,15 +45,13 @@ export default defineComponent({
     color: #606266;
     font-size: 14px;
 
-
     ul {
+        position: absolute;
         transform-origin: center top 0;
         z-index: 2029;
-        position: absolute;
         top: 20px;
         left: 0;
         padding: 10px 0;
-        margin: 5px 0;
         background-color: #fff;
         border: 1px solid #ebeef5;
         border-radius: 4px;
@@ -74,6 +72,17 @@ export default defineComponent({
                 background-color: #ecf5ff;
                 color: #66b1ff;
             }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            border-color: #555 transparent transparent transparent;
+            border-style: solid;
+            border-width: 6px;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%) rotate(180deg);
         }
     }
 }
