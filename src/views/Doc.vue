@@ -68,6 +68,9 @@
                     <li>
                         <router-link to="/doc/grid">Grid 组件</router-link>
                     </li>
+                    <li>
+                        <router-link to="/doc/citypick">CityPick 组件</router-link>
+                    </li>
                 </ol>
             </aside>
             <main>
@@ -167,6 +170,7 @@ aside {
                 display: block;
                 padding: 10px 16px;
                 text-decoration: none;
+                font-size: 14px;
             }
 
             .router-link-active {

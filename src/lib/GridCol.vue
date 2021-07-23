@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, inject, onMounted, Ref, ref} from 'vue';
+import {computed, defineComponent, inject, onMounted, onUnmounted, Ref, ref, watchEffect} from 'vue';
 
 export default defineComponent({
     name: "GridCol",
@@ -21,10 +21,37 @@ export default defineComponent({
     },
     setup({span, offset}) {
         const colRef = ref();
-        const widthRef = computed(() => {
-            return Number(span / 24 * 100).toFixed(2) + '%';
-        });
+        const widthRef = ref(Number(span / 24 * 100).toFixed(2) + '%');
         // const gutter = inject<Ref<number>>("gutter");
+
+        const resizeMethod = () => {
+            const p = colRef.value.parentElement.offsetWidth;
+
+
+            if (offset) {
+                const width = colRef.value.offsetWidth;
+                // @ts-ignore
+                colRef.value.style.transform = `translateX(${Number(offset / span * width)}px)`;
+            }
+
+            // if (700 < document.body.clientWidth && 740 > document.body.clientWidth) {
+            //     colRef.value.parentElement.style.flexWrap = 'wrap';
+            // }
+            // if (document.body.clientWidth < 768) {
+            //     widthRef.value = '50%';
+            //     // console.log(colRef.value.style);
+            //     // colRef.value.parentElement.style.flexDirection = 'column';
+            //     // colRef.value.parentElement.style.flexWrap='wrap'
+            //     // console.log(colRef.value.parentElement.style)
+            // } else {
+            //     widthRef.value = computed(() => {
+            //         // return Number(span / 24 * 100).toFixed(2) + '%';
+            //         return Number(span / 24 * p).toFixed(2) + 'px';
+            //     }).value;
+            // }
+        };
+
+        window.addEventListener('resize', resizeMethod, true);
 
         onMounted(() => {
             if (offset) {
@@ -32,6 +59,10 @@ export default defineComponent({
                 // @ts-ignore
                 colRef.value.style.transform = `translateX(${Number(offset / span * width)}px)`;
             }
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('resize', resizeMethod, true);
         });
 
         return {widthRef, colRef};

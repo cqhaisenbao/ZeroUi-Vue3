@@ -18,6 +18,7 @@ import TooltipDemo from "../components/demo/TooltipDemo.vue";
 import SlidesDemo from "../components/demo/SlidesDemo.vue";
 import StickyDemo from "../components/demo/StickyDemo.vue";
 import GridDemo from "../components/demo/GridDemo.vue";
+import CityPickDemo from "../components/demo/CityPickDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -51,6 +52,7 @@ const router = createRouter({
                 {path: "slides", component: SlidesDemo},
                 {path: "sticky", component: StickyDemo},
                 {path: "grid", component: GridDemo},
+                {path: "citypick", component: CityPickDemo},
             ]
         }
     ]
