@@ -31,3 +31,41 @@ interface MessageOptions {
     displayTime?: number,
     top?: number
 }
+
+//citypick
+interface City {
+    id: String,
+    name: String
+}
+
+type CityData = {
+    [p in keys]: City[]
+}
+
+type keys =
+    "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
