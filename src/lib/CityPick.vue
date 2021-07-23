@@ -1,7 +1,7 @@
 <template>
     <div class="citypickWrapper">
-        <input :ref="inputRef" readonly="readonly" @focus="clickInput">
-        <div class="container" v-show="show" :ref="selectRef">
+        <input class="input" ref="inputRef" v-model:value="currentCity" readonly="readonly" @focus="clickInput"/>
+        <div class="container" v-show="show" ref="selectRef">
             <ul class="label p10">
                 <li class="labelLi" v-for="item in labelSource" :class="{isSelected:isSelected(item)}" :key="item" @click="selectLabel(item)">{{ item }}</li>
             </ul>
@@ -22,20 +22,18 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, watch} from 'vue';
+import {computed, defineComponent, PropType, ref, watch, watchEffect} from 'vue';
 import useClickOutside from "./hooks/useClickOutside";
+import Input from "./Input.vue";
 
 export default defineComponent({
     name: "CityPick",
+    components: {Input},
     props: {
         cityData: {
             type: Object as PropType<Partial<CityData>>,
             required: true
         },
-        // updateSelectedCity: {
-        //     type: Function as PropType<(v: City) => void>,
-        //     required: true
-        // },
         selectedCity: {
             type: String
         },
@@ -49,6 +47,7 @@ export default defineComponent({
         const selectLabel = (i: string) => {
             currentLabel.value = i;
         };
+        const currentCity = ref();
         const labelSource = ['ABCDE', 'FGHI', 'JKLMN', 'OPQRS', 'TUVW', 'XYZ'];
 
         let arr = ref<Partial<CityData>>({});
@@ -61,15 +60,19 @@ export default defineComponent({
             });
         }, {immediate: true});
 
+        watchEffect(() => {
+            currentCity.value = props.selectedCity;
+        });
+
         const isSelected = (k: string) => {
             if (k === currentLabel.value) {
                 return 'isSelected';
             }
         };
 
-        const selectCity = (name: string) => context.emit('update:value', name);
+        const selectCity = (name: string) => context.emit('update:selectedCity', name);
 
-        const show = ref(true);
+        const show = ref(false);
 
         const selectRef = ref<HTMLDivElement>();
         const inputRef = ref<HTMLInputElement>();
@@ -77,7 +80,6 @@ export default defineComponent({
         const isClickOutside = useClickOutside(selectRef, inputRef);
 
         watch(isClickOutside, (val) => {
-            console.log(1);
             show.value = !val;
         });
 
@@ -95,25 +97,69 @@ export default defineComponent({
             labelSource,
             selectLabel,
             currentLabel,
-            arr
+            arr,
+            currentCity,
         };
     }
 });
 </script>
 
 <style lang="scss" scoped>
+@import "./src/style/theme.scss";
+
+.input {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+    width: 150px;
+
+    &:hover {
+        border: 1px solid #bdbec1;
+        transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+        transition-property: border-color;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition-delay: 0s;
+        cursor: pointer;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $o-type-primary;
+    }
+}
+
 .citypickWrapper {
     position: relative;
+    display: inline-block;
+    margin-left: 10px;
 
     .container {
         background: #ffffff;
         position: absolute;
         z-index: 9999;
+        max-width: 500px;
+        height: 300px;
+        overflow: auto;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        padding-left: 10px;
+        padding-right: 15px;
 
         .label {
             display: flex;
             padding-bottom: 20px;
             padding-top: 10px;
+            border-radius: 4px;
 
             .labelLi {
                 list-style: none;
@@ -121,6 +167,14 @@ export default defineComponent({
                 padding: 4px 8px;
                 cursor: pointer;
                 color: #666666;
+
+                &:first-child {
+                    border-radius: 5px 0 0 5px;
+                }
+
+                &:last-child {
+                    border-radius: 0 5px 5px 0;
+                }
 
                 &.isSelected {
                     color: #409EFF;

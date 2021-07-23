@@ -114,6 +114,7 @@ $aside-index: 0;
     > .content {
         padding-top: 60px;
         padding-left: 260px;
+        min-height: 600px;
         @media (max-width: 500px) {
             padding-left: 0;
         }
