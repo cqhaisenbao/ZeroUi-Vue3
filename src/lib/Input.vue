@@ -1,6 +1,6 @@
 <template>
     <div class="o-input" :class="{'is-disabled':disabled,'el-input--suffix':clearable || type==='password' || suffixIcon,'el-input--prefix':prefixIcon}">
-        <input v-model="childInputValue" :type="childInputType" class="o-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
+        <input v-bind="$attrs" v-model="childInputValue" :type="childInputType" class="o-input-inner" @input="inputChange" :disabled="disabled" :placeholder="placeholder">
         <span v-if="clearable && childInputValue" class="o-input-icon-wrapper">
             <Icon @click="clearInputValue" name="icon-error"/>
        </span>
@@ -23,6 +23,7 @@ import Icon from "./Icon.vue";
 
 export default defineComponent({
     name: "Input",
+    inheritAttrs: false,
     components: {Icon},
     props: {
         placeholder: {
@@ -68,7 +69,10 @@ export default defineComponent({
         const countNum = computed(() => {
             return childInputValue.value.length || '0';
         });
-        const childInputValue = ref(props.inputValue);
+        const childInputValue = ref();
+        watchEffect(() => {
+            childInputValue.value = props.inputValue;
+        });
         const childInputType = ref(props.type);
         watchEffect(() => {
             if (countNum.value > props.maxlength) {
