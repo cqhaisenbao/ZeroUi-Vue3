@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref, PropType, onUnmounted} from 'vue';
+import {defineComponent, onMounted, ref, PropType, onUnmounted, watchEffect, Ref} from 'vue';
+import useClickOutside from "./hooks/useClickOutside";
 
 export default defineComponent({
     name: "Dropdown",
@@ -24,6 +25,15 @@ export default defineComponent({
         const ulRef = ref();
         const buttonRef = ref();
         const ulVisible = ref(false);
+        let isClickOutSide: Ref<boolean>;
+        if (props.trigger === 'click') {
+            isClickOutSide = useClickOutside(ulRef, buttonRef);
+        }
+        watchEffect(() => {
+            if (ulVisible && isClickOutSide && isClickOutSide.value) {
+                ulVisible.value = false;
+            }
+        });
 
         onMounted(() => {
             const height = buttonRef.value.offsetHeight;
@@ -32,6 +42,7 @@ export default defineComponent({
 
             if (props.trigger === 'click') {
                 buttonRef.value.onclick = () => ulVisible.value = !ulVisible.value;
+
             } else {
                 buttonRef.value.onmouseenter = () => ulVisible.value = true;
                 buttonRef.value.onmouseleave = () => ulVisible.value = false;
@@ -50,7 +61,7 @@ export default defineComponent({
             }
         });
 
-        return {ulRef, ulVisible, buttonRef};
+        return {ulRef, ulVisible, buttonRef, isClickOutSide};
     }
 });
 </script>
