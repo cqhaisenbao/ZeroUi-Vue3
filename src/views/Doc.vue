@@ -38,6 +38,8 @@
                         <router-link to="/doc/radio">Radio 组件</router-link>
                         <router-link to="/doc/input">Input 组件</router-link>
                         <router-link to="/doc/citypick">CityPick 组件</router-link>
+                        <router-link to="/doc/citypick">DatePick 组件(pending)</router-link>
+                        <router-link to="/doc/citypick">UpLoad 组件(pending)</router-link>
                     </li>
                     <li>
                         <span>数据展示</span>
@@ -46,10 +48,12 @@
                         <router-link to="/doc/tooltip">Tooltip 组件</router-link>
                         <router-link to="/doc/slides">Slides 组件</router-link>
                         <router-link to="/doc/card">Card 组件</router-link>
+                        <router-link to="/doc/card">Table 组件(pending)</router-link>
                     </li>
                     <li>
                         <span>导航</span>
                         <router-link to="/doc/dropdown">Dropdown 组件</router-link>
+                        <router-link to="/doc/card">Pager 组件(pending)</router-link>
                     </li>
                     <li>
                         <span>其他</span>
@@ -181,6 +185,7 @@ aside {
                 color: white;
                 font-weight: 500;
                 transition: all .3s linear;
+                padding-left: 32px!important;
 
                 &:hover {
                     background: #323232 !important;

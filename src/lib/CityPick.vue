@@ -1,6 +1,6 @@
 <template>
     <div class="citypickWrapper">
-        <input class="input" ref="inputRef" v-model:value="currentCity" readonly="readonly" @focus="clickInput"/>
+        <input class="input" ref="inputRef" v-model="currentCity" readonly="readonly" @focus="clickInput"/>
         <div class="container" v-show="show" ref="selectRef">
             <ul class="label p10">
                 <li class="labelLi" v-for="item in labelSource" :class="{isSelected:isSelected(item)}" :key="item" @click="selectLabel(item)">{{ item }}</li>
