@@ -59,6 +59,7 @@
                         <span>其他</span>
                         <router-link to="/doc/spread">Spread 组件</router-link>
                         <router-link to="/doc/icon">Icon 组件</router-link>
+                        <router-link to="/doc/imagemodal">ImageModal 组件</router-link>
                     </li>
                 </ol>
             </aside>
