@@ -1,6 +1,8 @@
 <template>
     <div class="o-dropdown">
-        <slot name="button"></slot>
+        <div ref="buttonRef">
+            <slot name="button"></slot>
+        </div>
         <ul v-show="ulVisible" ref="ulRef" class="o-dropdown-ul">
             <slot></slot>
         </ul>
@@ -8,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref, PropType} from 'vue';
+import {defineComponent, onMounted, ref, PropType, onUnmounted} from 'vue';
 
 export default defineComponent({
     name: "Dropdown",
@@ -18,31 +20,37 @@ export default defineComponent({
             default: 'hover'
         }
     },
-    setup(props, {slots}) {
+    setup(props) {
         const ulRef = ref();
+        const buttonRef = ref();
         const ulVisible = ref(false);
 
         onMounted(() => {
-            const button = slots.button!()[0];
+            const height = buttonRef.value.offsetHeight;
 
-            const height = (button as any).el.offsetHeight;
             ulRef.value.style.transform = `translate(0,${height}px)`;
 
             if (props.trigger === 'click') {
-                (button as any).el.onclick = () => ulVisible.value = !ulVisible.value;
+                buttonRef.value.onclick = () => ulVisible.value = !ulVisible.value;
             } else {
-                (button as any).el.onmouseenter = () => ulVisible.value = true;
-                (button as any).el.onmouseleave = () => ulVisible.value = false;
-                const changeUlVisible = (e: any) => {
-                    ulVisible.value = e.relatedTarget.className === 'o-dropdown-button';
-                };
+                buttonRef.value.onmouseenter = () => ulVisible.value = true;
+                buttonRef.value.onmouseleave = () => ulVisible.value = false;
+                const changeUlVisible = (e: any) => ulVisible.value = e.relatedTarget.className === 'o-dropdown-button';
                 ulRef.value.onmouseenter = changeUlVisible;
                 ulRef.value.onmouseleave = changeUlVisible;
             }
-
         });
 
-        return {ulRef, ulVisible};
+        onUnmounted(() => {
+            buttonRef.value.onmouseenter = null;
+            buttonRef.value.onmouseleave = null;
+            if (ulRef.value) {
+                ulRef.value.onmouseenter = null;
+                ulRef.value.onmouseleave = null;
+            }
+        });
+
+        return {ulRef, ulVisible, buttonRef};
     }
 });
 </script>
@@ -51,6 +59,7 @@ export default defineComponent({
 @import "./src/style/theme.scss";
 
 .o-dropdown {
+    display: inline-block;
     position: relative;
 
     .o-dropdown-button {
