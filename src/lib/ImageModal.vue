@@ -4,7 +4,7 @@
         <component class="myImg" :is="$slots.default" @click="imgClick" ref="imgRef"></component>
         <teleport to="body">
             <div ref="modalRef" class="modal">
-                <span @click="closeModal" ref="closeRef" class="close">&times;</span>
+                <span @click="closeModal" ref="closeRef" class="o-imageModal-close">&times;</span>
                 <img ref="modalImgRef" class="modal-content" alt="" src="">
             </div>
         </teleport>
@@ -96,7 +96,7 @@ export default defineComponent({
     to {transform: scale(1)}
 }
 
-.close {
+.o-imageModal-close {
     position: absolute;
     top: 15px;
     right: 35px;
@@ -104,13 +104,11 @@ export default defineComponent({
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
+    &:hover,&:focus{
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
 
 @media only screen and (max-width: 700px) {
