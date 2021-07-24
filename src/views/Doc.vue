@@ -18,58 +18,43 @@
                 <h3>组件列表</h3>
                 <ol class="components">
                     <li>
+                        <span>通用</span>
+                        <router-link to="/doc/button">Button 组件</router-link>
                         <router-link to="/doc/switch">Switch 组件</router-link>
                     </li>
                     <li>
-                        <router-link to="/doc/button">Button 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/dialog">Dialog 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/tabs">Tabs 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/card">Card 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/icon">Icon 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/input">Input 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/loading">Loading 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/message">Message 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/collapse">Collapse 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/spread">Spread 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/radio">Radio 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/dropdown">Dropdown 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/tooltip">Tooltip 组件</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/doc/slides">Slides 组件</router-link>
-                    </li>
-                    <li>
+                        <span>布局</span>
                         <router-link to="/doc/sticky">Sticky 组件</router-link>
-                    </li>
-                    <li>
                         <router-link to="/doc/grid">Grid 组件</router-link>
                     </li>
                     <li>
+                        <span>信息反馈</span>
+                        <router-link to="/doc/dialog">Dialog 组件</router-link>
+                        <router-link to="/doc/loading">Loading 组件</router-link>
+                        <router-link to="/doc/message">Message 组件</router-link>
+                    </li>
+                    <li>
+                        <span>数据录入</span>
+                        <router-link to="/doc/radio">Radio 组件</router-link>
+                        <router-link to="/doc/input">Input 组件</router-link>
                         <router-link to="/doc/citypick">CityPick 组件</router-link>
+                    </li>
+                    <li>
+                        <span>数据展示</span>
+                        <router-link to="/doc/tabs">Tabs 组件</router-link>
+                        <router-link to="/doc/collapse">Collapse 组件</router-link>
+                        <router-link to="/doc/tooltip">Tooltip 组件</router-link>
+                        <router-link to="/doc/slides">Slides 组件</router-link>
+                        <router-link to="/doc/card">Card 组件</router-link>
+                    </li>
+                    <li>
+                        <span>导航</span>
+                        <router-link to="/doc/dropdown">Dropdown 组件</router-link>
+                    </li>
+                    <li>
+                        <span>其他</span>
+                        <router-link to="/doc/spread">Spread 组件</router-link>
+                        <router-link to="/doc/icon">Icon 组件</router-link>
                     </li>
                 </ol>
             </aside>
@@ -130,13 +115,29 @@ $aside-index: 0;
         > ol {
             &.components {
                 padding-bottom: 50px;
-            }
 
-            > li {
-                &:hover {
-                    background: $o-type-info-light;
+                span {
+                    margin-top: 10px;
+                    display: block;
+                    padding-left: 16px;
+                    color: rgba(0, 0, 0, 0.35);
+                    font-size: 12px;
+                    line-height: 20px;
+                    font-weight: 500;
+                    cursor: default;
+                }
+
+                > li {
+                    a {
+                        padding-left: 36px;
+
+                        &:hover {
+                            background: $o-type-info-light;
+                        }
+                    }
                 }
             }
+
         }
     }
 
@@ -180,6 +181,10 @@ aside {
                 color: white;
                 font-weight: 500;
                 transition: all .3s linear;
+
+                &:hover {
+                    background: #323232 !important;
+                }
             }
         }
     }
