@@ -1,8 +1,8 @@
 <demo>
-常规用法
+放大展示其他图片
 </demo>
 <template>
-    <ImageModal>
+    <ImageModal modalImgSrc=../../src/assets/lights.jpg>
         <img src=../../assets/img_snow.jpg alt=""/>
     </ImageModal>
 </template>
