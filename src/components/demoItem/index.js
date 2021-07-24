@@ -37,6 +37,7 @@ import Grid3Demo from './Grid3.demo.vue'
 import City1Demo from './City1.demo.vue'
 import Image1Demo from './Image1.demo.vue'
 import Image2Demo from './Image2.demo.vue'
+import Upload1Demo from './Upload1.demo.vue'
 
 export {
     Button1Demo,
@@ -77,5 +78,6 @@ export {
     Grid3Demo,
     City1Demo,
     Image1Demo,
-    Image2Demo
+    Image2Demo,
+    Upload1Demo
 }

@@ -39,7 +39,7 @@
                         <router-link to="/doc/input">Input 组件</router-link>
                         <router-link to="/doc/citypick">CityPick 组件</router-link>
                         <router-link to="/doc/citypick">DatePick 组件(pending)</router-link>
-                        <router-link to="/doc/citypick">UpLoad 组件(pending)</router-link>
+                        <router-link to="/doc/upload">UpLoad 组件</router-link>
                     </li>
                     <li>
                         <span>数据展示</span>

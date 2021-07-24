@@ -20,6 +20,7 @@ import StickyDemo from "../components/demo/StickyDemo.vue";
 import GridDemo from "../components/demo/GridDemo.vue";
 import CityPickDemo from "../components/demo/CityPickDemo.vue";
 import ImageDemo from "../components/demo/ImageDemo.vue";
+import UploadDemo from "../components/demo/UploadDemo.vue";
 import Intro from "../views/Intro.vue";
 import GetStarted from "../views/GetStarted.vue";
 import Install from "../views/Install.vue";
@@ -55,6 +56,7 @@ const router = createRouter({
                 {path: "grid", component: GridDemo},
                 {path: "citypick", component: CityPickDemo},
                 {path: "imagemodal", component: ImageDemo},
+                {path: "upload", component: UploadDemo},
             ]
         }
     ]
